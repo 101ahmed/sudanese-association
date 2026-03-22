@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container mt-5">
+        <h2 class="text-center">إضافة طالب</h2>
+
+        {{ form_start(form) }}
+
+        {{ form_row(form.name) }}
+        {{ form_row(form.level) }}
+        {{ form_row(form.guardian) }}
+
+        <button class="btn btn-success w-100">حفظ</button>
+
+        {{ form_end(form) }}
+    </div>
+
+{% endblock %}

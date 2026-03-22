@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}إضافة خبر{% endblock %}
+
+{% block body %}
+
+    <div class="container mt-5">
+
+        <h1 class="mb-4 text-center">
+            إضافة خبر جديد
+        </h1>
+
+        <div class="card p-4 shadow">
+
+            {{ form_start(form) }}
+
+            <div class="mb-3">
+                <label>العنوان</label>
+                {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+            </div>
+
+            <div class="mb-3">
+                <label>المحتوى</label>
+                {{ form_widget(form.content, {'attr': {'class': 'form-control'}}) }}
+            </div>
+
+            <div class="mb-3">
+                <label>رابط الصورة</label>
+                {{ form_widget(form.image, {'attr': {'class': 'form-control'}}) }}
+            </div>
+
+            <button class="btn btn-success w-100 mb-2">
+                نشر الخبر
+            </button>
+
+            <a href="/news" class="btn btn-secondary w-100">
+                رجوع للأخبار
+            </a>
+
+            {{ form_end(form) }}
+
+        </div>
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}لوحة التحكم{% endblock %}
+
+{% block body %}
+
+    <div class="container mt-5">
+
+        <h1 class="text-center mb-5 fw-bold">🚀 لوحة التحكم</h1>
+
+        <div class="row g-4">
+
+            <!-- الأخبار -->
+            <div class="col-md-4">
+                <div class="card text-center shadow-lg p-4 border-0 rounded-4 hover-card">
+                    <div class="mb-3 fs-1">📰</div>
+                    <h6 class="text-muted">عدد الأخبار</h6>
+                    <h2 class="text-primary fw-bold">{{ newsCount }}</h2>
+                </div>
+            </div>
+
+            <!-- المستخدمين -->
+            <div class="col-md-4">
+                <div class="card text-center shadow-lg p-4 border-0 rounded-4 hover-card">
+                    <div class="mb-3 fs-1">👥</div>
+                    <h6 class="text-muted">عدد المستخدمين</h6>
+                    <h2 class="text-success fw-bold">{{ usersCount }}</h2>
+                </div>
+            </div>
+
+            <!-- الطلاب -->
+            <div class="col-md-4">
+                <div class="card text-center shadow-lg p-4 border-0 rounded-4 hover-card">
+                    <div class="mb-3 fs-1">🎓</div>
+                    <h6 class="text-muted">عدد الطلاب</h6>
+                    <h2 class="text-warning fw-bold">قريباً</h2>
+                </div>
+            </div>
+
+        </div>
+
+        <hr class="my-5">
+
+        <div class="row g-3 text-center">
+
+            <div class="col-md-4">
+                <a href="/admin/news/create" class="btn btn-primary w-100 py-3 rounded-3">
+                    ➕ إضافة خبر
+                </a>
+            </div>
+
+            <div class="col-md-4">
+                <a href="/news" class="btn btn-success w-100 py-3 rounded-3">
+                    🌍 عرض الموقع
+                </a>
+            </div>
+
+            <div class="col-md-4">
+                <a href="/logout" class="btn btn-danger w-100 py-3 rounded-3">
+                    🚪 تسجيل الخروج
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <style>
+        .hover-card {
+            transition: all 0.3s ease;
+        }
+        .hover-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+    </style>
+
+{% endblock %}

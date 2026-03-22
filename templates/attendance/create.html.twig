@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container mt-5">
+
+        <h2 class="text-center">تسجيل الحضور</h2>
+
+        {% for message in app.flashes('error') %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        {{ form_start(form) }}
+
+        {{ form_row(form.student) }}
+        {{ form_row(form.status) }}
+
+        <button class="btn btn-success w-100">حفظ</button>
+
+        {{ form_end(form) }}
+
+    </div>
+
+{% endblock %}

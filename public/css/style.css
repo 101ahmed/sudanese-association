@@ -1,0 +1,64 @@
+body{
+    font-family: Cairo;
+    margin:0;
+    background:#f5f5f5;
+}
+
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:black;
+    color:white;
+    padding:15px;
+}
+
+nav ul{
+    display:flex;
+    gap:20px;
+    list-style:none;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+}
+
+.hero{
+    background:#008000;
+    color:white;
+    text-align:center;
+    padding:100px;
+}
+
+.about{
+    padding:60px;
+    text-align:center;
+}
+
+.sections{
+    display:flex;
+    gap:20px;
+    padding:40px;
+    justify-content:center;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    width:200px;
+}
+.dropdown-menu {
+    border-radius: 10px;
+    text-align: right;
+}
+
+.dropdown-item {
+    transition: 0.3s;
+}
+
+.dropdown-item:hover {
+    background-color: #2c3e50;
+    color: white;
+}

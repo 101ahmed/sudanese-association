@@ -1,0 +1,140 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container mt-5">
+
+        <h1 class="text-center mb-5">📊 لوحة التحكم - الأمانة الأكاديمية</h1>
+
+        <div class="row g-4">
+
+            <div class="col-md-3">
+                <div class="card text-center shadow p-4">
+                    <h5>عدد الطلاب</h5>
+                    <h2 class="text-primary">{{ studentsCount }}</h2>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card text-center shadow p-4">
+                    <h5>عدد أولياء الأمور</h5>
+                    <h2 class="text-success">{{ guardiansCount }}</h2>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card text-center shadow p-4">
+                    <h5>عدد الحضور</h5>
+                    <h2 class="text-warning">{{ attendanceCount }}</h2>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card text-center shadow p-4">
+                    <h5>نسبة الحضور</h5>
+                    <h2 class="text-danger">{{ attendanceRate }}%</h2>
+                </div>
+            </div>
+
+        </div>
+
+        <hr class="my-5">
+
+        <!-- أزرار -->
+        <div class="row g-3 text-center">
+
+            <div class="col-md-4">
+                <a href="/admin/add-student" class="btn btn-primary w-100">
+                    ➕ إضافة طالب
+                </a>
+            </div>
+
+            <div class="col-md-4">
+                <a href="/admin/students" class="btn btn-info w-100">
+                    📋 قائمة الطلاب
+                </a>
+            </div>
+
+            <div class="col-md-4">
+                <a href="/admin/attendance/create" class="btn btn-success w-100">
+                    📅 تسجيل الحضور
+                </a>
+            </div>
+            <div class="row mt-4 text-center">
+
+                <div class="col-md-6">
+                    <a href="/admin/pdf/students" class="btn btn-dark w-100">
+                        📄 تحميل تقرير الطلاب
+                    </a>
+                </div>
+
+                <div class="col-md-6">
+                    <a href="/admin/pdf/attendance" class="btn btn-secondary w-100">
+                        📄 تحميل تقرير الحضور
+                    </a>
+                </div>
+                <a href="/admin/send/students" class="btn btn-danger w-100 mt-3">
+                    📧 إرسال تقرير الطلاب بالبريد
+                </a>
+
+            </div>
+
+        </div>
+
+        <!-- Chart أعمدة -->
+        <div class="mt-5">
+            <canvas id="myChart"></canvas>
+        </div>
+
+        <!-- Chart نسبة -->
+        <div class="mt-5">
+            <canvas id="attendanceChart"></canvas>
+        </div>
+
+    </div>
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        // 📊 Bar Chart
+        new Chart(document.getElementById('myChart'), {
+            type: 'bar',
+            data: {
+                labels: ['الطلاب', 'أولياء الأمور', 'الحضور'],
+                datasets: [{
+                    label: 'إحصائيات النظام',
+                    data: [
+                        {{ chartData.students }},
+                        {{ chartData.guardians }},
+                        {{ chartData.attendance }}
+                    ],
+                    backgroundColor: [
+                        'rgba(54, 162, 235, 0.7)',
+                        'rgba(75, 192, 192, 0.7)',
+                        'rgba(255, 206, 86, 0.7)'
+                    ]
+                }]
+            }
+        });
+
+        // 🍩 Doughnut Chart
+        new Chart(document.getElementById('attendanceChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['حضور', 'غياب'],
+                datasets: [{
+                    data: [
+                        {{ attendanceRate }},
+                        {{ 100 - attendanceRate }}
+                    ],
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.8)',
+                        'rgba(255, 99, 132, 0.8)'
+                    ]
+                }]
+            }
+        });
+    </script>
+
+{% endblock %}

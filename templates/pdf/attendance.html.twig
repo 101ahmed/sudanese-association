@@ -1,0 +1,22 @@
+<h2 style="text-align:center;">📅 تقرير الحضور</h2>
+
+<table border="1" width="100%" cellspacing="0" cellpadding="5">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>الطالب</th>
+        <th>الحالة</th>
+        <th>التاريخ</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in attendance %}
+        <tr>
+            <td>{{ item.id }}</td>
+            <td>{{ item.student.name }}</td>
+            <td>{{ item.status }}</td>
+            <td>{{ item.date|date('Y-m-d') }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container mt-5">
+
+        <h2 class="text-center mb-4">إضافة طالب + ولي أمر</h2>
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+        <div class="card p-4 shadow">
+
+            {{ form_start(form) }}
+
+            <h5>👨‍🎓 بيانات الطالب</h5>
+            {{ form_row(form.name) }}
+            {{ form_row(form.level) }}
+
+            <hr>
+
+            <h5>👨‍👩‍👦 بيانات ولي الأمر</h5>
+            {{ form_row(form.guardian_name) }}
+            {{ form_row(form.guardian_phone) }}
+
+            <button class="btn btn-success w-100 mt-3">
+                حفظ
+            </button>
+
+            {{ form_end(form) }}
+
+        </div>
+
+    </div>
+
+{% endblock %}

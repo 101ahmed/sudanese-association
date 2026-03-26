@@ -6,9 +6,7 @@
 
     <div class="container mt-5">
 
-        <h1 class="mb-4 text-center">
-            إضافة خبر جديد
-        </h1>
+        <h1 class="mb-4 text-center">إضافة خبر جديد</h1>
 
         <div class="card p-4 shadow">
 
@@ -25,7 +23,7 @@
             </div>
 
             <div class="mb-3">
-                <label>رابط الصورة</label>
+                <label>الصورة</label>
                 {{ form_widget(form.image, {'attr': {'class': 'form-control'}}) }}
             </div>
 
@@ -33,7 +31,7 @@
                 نشر الخبر
             </button>
 
-            <a href="/news" class="btn btn-secondary w-100">
+            <a href="{{ path('news_list') }}" class="btn btn-secondary w-100">
                 رجوع للأخبار
             </a>
 

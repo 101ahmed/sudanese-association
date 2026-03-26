@@ -22,16 +22,34 @@ class AttendanceController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            // 🔥 حماية إضافية
+            // ✅ تأكد من اختيار الطالب
             if (!$attendance->getStudent()) {
                 $this->addFlash('error', 'يجب اختيار الطالب');
                 return $this->redirectToRoute('attendance_create');
             }
 
-            $attendance->setDate(new \DateTime());
+            // ✅ تاريخ اليوم فقط (بدون وقت)
+            $today = new \DateTime('today');
 
+            // ✅ تحقق من عدم التكرار
+            $existing = $em->getRepository(Attendance::class)->findOneBy([
+                'student' => $attendance->getStudent(),
+                'date' => $today
+            ]);
+
+            if ($existing) {
+                $this->addFlash('error', 'هذا الطالب مسجل حضور بالفعل اليوم');
+                return $this->redirectToRoute('attendance_create');
+            }
+
+            // ✅ تعيين التاريخ
+            $attendance->setDate($today);
+
+            // ✅ حفظ
             $em->persist($attendance);
             $em->flush();
+
+            $this->addFlash('success', 'تم تسجيل الحضور بنجاح');
 
             return $this->redirectToRoute('attendance_create');
         }

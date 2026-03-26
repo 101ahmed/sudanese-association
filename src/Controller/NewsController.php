@@ -4,40 +4,62 @@ namespace App\Controller;
 
 use App\Entity\News;
 use App\Form\NewsType;
-use App\Repository\NewsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
 class NewsController extends AbstractController
 {
-    #[Route('/news', name: 'news')]
-    public function index(NewsRepository $newsRepository)
+    #[Route('/news', name: 'news_list')]
+    public function index(Request $request, EntityManagerInterface $em): Response
     {
+        $search = $request->query->get('q');
+
+        $qb = $em->createQueryBuilder()
+            ->select('n')
+            ->from(News::class, 'n')
+            ->orderBy('n.id', 'DESC');
+
+        if ($search) {
+            $qb->andWhere('n.title LIKE :q')
+                ->setParameter('q', '%' . $search . '%');
+        }
+
+        $news = $qb->getQuery()->getResult();
+
         return $this->render('news/index.html.twig', [
-            'news' => $newsRepository->findAll()
+            'news' => $news
         ]);
     }
 
-    // ✅ CREATE
-    #[Route('/admin/news/create', name: 'news_create')]
-    public function create(Request $request, EntityManagerInterface $em)
+    #[Route('/news/create', name: 'news_create')]
+    public function create(Request $request, EntityManagerInterface $em): Response
     {
         $news = new News();
-
         $form = $this->createForm(NewsType::class, $news);
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
             $news->setCreatedAt(new \DateTime());
 
+            $imageFile = $form->get('image')->getData();
+
+            if ($imageFile) {
+                $fileName = uniqid().'.'.$imageFile->guessExtension();
+                $imageFile->move(
+                    $this->getParameter('kernel.project_dir').'/public/uploads',
+                    $fileName
+                );
+                $news->setImage($fileName);
+            }
+
             $em->persist($news);
             $em->flush();
 
-            return $this->redirectToRoute('news');
+            return $this->redirectToRoute('news_list');
         }
 
         return $this->render('news/create.html.twig', [
@@ -45,33 +67,41 @@ class NewsController extends AbstractController
         ]);
     }
 
-    // ✅ EDIT
-    #[Route('/admin/news/{id}/edit', name: 'news_edit')]
-    public function edit(News $news, Request $request, EntityManagerInterface $em)
+    #[Route('/news/{id}/edit', name: 'news_edit')]
+    public function edit(News $news, Request $request, EntityManagerInterface $em): Response
     {
         $form = $this->createForm(NewsType::class, $news);
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $imageFile = $form->get('image')->getData();
+
+            if ($imageFile) {
+                $fileName = uniqid().'.'.$imageFile->guessExtension();
+                $imageFile->move(
+                    $this->getParameter('kernel.project_dir').'/public/uploads',
+                    $fileName
+                );
+                $news->setImage($fileName);
+            }
+
             $em->flush();
 
-            return $this->redirectToRoute('news');
+            return $this->redirectToRoute('news_list');
         }
 
-        return $this->render('news/create.html.twig', [
+        return $this->render('news/edit.html.twig', [
             'form' => $form->createView()
         ]);
     }
 
-    // ✅ DELETE
-    #[Route('/admin/news/{id}/delete', name: 'news_delete')]
-    public function delete(News $news, EntityManagerInterface $em)
+    #[Route('/news/{id}/delete', name: 'news_delete')]
+    public function delete(News $news, EntityManagerInterface $em): Response
     {
         $em->remove($news);
         $em->flush();
 
-        return $this->redirectToRoute('news');
+        return $this->redirectToRoute('news_list');
     }
 }

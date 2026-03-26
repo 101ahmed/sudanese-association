@@ -1,44 +1,42 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}الأخبار{% endblock %}
+
 {% block body %}
 
     <div class="container mt-5">
 
-        <h1 class="text-center mb-5">الأخبار</h1>
+        <h2 class="text-center mb-4">📰 الأخبار</h2>
 
-        <div class="row">
+        <!-- 🔍 Search -->
+        <form method="get" class="mb-3">
+            <input type="text" name="q" class="form-control" placeholder="بحث...">
+        </form>
 
-            {% for article in news %}
+        <!-- ➕ Add -->
+        <a href="{{ path('news_create') }}" class="btn btn-primary mb-3">
+            ➕ إضافة خبر
+        </a>
 
-                <div class="col-md-4">
+        {% for item in news %}
+            <div class="card mb-3 shadow">
+                <div class="card-body">
 
-                    <div class="card mb-4">
+                    {% if item.image %}
+                        <img src="/uploads/{{ item.image }}" width="100%">
+                    {% endif %}
 
-                        <img src="{{ article.image }}" class="card-img-top">
+                    <h4>{{ item.title }}</h4>
+                    <p>{{ item.content }}</p>
 
-                        <div class="card-body">
-
-                            <h5>{{ article.title }}</h5>
-
-                            <p>{{ article.content|slice(0,100) }}...</p>
-
-                            <a href="/admin/news/{{ article.id }}/edit" class="btn btn-warning btn-sm">
-                                تعديل
-                            </a>
-
-                            <a href="/admin/news/{{ article.id }}/delete" class="btn btn-danger btn-sm">
-                                حذف
-                            </a>
-
-                        </div>
-
-                    </div>
+                    <a href="{{ path('news_edit', {id: item.id}) }}" class="btn btn-warning">✏️</a>
+                    <a href="{{ path('news_delete', {id: item.id}) }}" class="btn btn-danger">🗑</a>
 
                 </div>
-
-            {% endfor %}
-
-        </div>
+            </div>
+        {% else %}
+            <p class="text-center">لا توجد أخبار</p>
+        {% endfor %}
 
     </div>
 

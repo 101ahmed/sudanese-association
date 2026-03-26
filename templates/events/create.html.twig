@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container mt-5">
+
+        <h2>➕ إضافة فعالية</h2>
+
+        {{ form_start(form) }}
+        {{ form_row(form.title) }}
+        {{ form_row(form.description) }}
+        {{ form_row(form.location) }}
+        {{ form_row(form.date) }}
+
+        <button class="btn btn-success">حفظ</button>
+
+        {{ form_end(form) }}
+
+    </div>
+
+{% endblock %}

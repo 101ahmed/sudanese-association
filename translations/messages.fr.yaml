@@ -1,0 +1,133 @@
+nav:
+  home: "Accueil"
+  about: "À propos"
+  news: "Actualités"
+  contact: "Contact"
+  committee: "Commissions"
+  events: "Événements"
+  committee_chair: "Président de l’association"
+  committee_general: "Secrétariat général"
+  committee_academic: "Secrétariat académique"
+  committee_social: "Secrétariat social"
+  committee_communication: "Secrétariat communication"
+  committee_women_children: "Affaires femmes et enfants"
+  committee_statistics: "Secrétariat des statistiques"
+  committee_external: "Secrétariat extérieur"
+  committee_media: "Secrétariat média"
+  committee_shura: "Conseil de la Choura"
+  committee_fathers: "Conseil des pères"
+  login: "Connexion"
+  register: "Créer un compte"
+
+app:
+  title: "Association des Congés Soudanaise à Rennes"
+footer:
+  title: "Association des Congés Soudanaise à Rennes"
+
+home:
+  sections: "Sections du site"
+  stats_title: "Statistiques de l'association"
+  contact_title: "Contactez-nous"
+  contact_text: "Envoyez-nous un message via le formulaire. Nous analyserons votre demande et vous répondrons rapidement."
+  gallery_title: "Galerie photo"
+  hero:
+    title: "Association des Communautés Sudanaises - Rennes"
+    subtitle: "Une plateforme pour soutenir la communauté et organiser l’éducation, les activités culturelles et sociales."
+  stats_students: "Étudiants"
+  stats_students_singular: "Étudiant"
+  stats_guardians_singular: "Tuteur/Responsable"
+  stats_attendance_singular: "Présence"
+  stats_events: "Événement"
+  stats_news: "Actualités"
+  stats_news_singular: "Actualité"
+  news_show_all: "Tout afficher"
+  news_subtitle: "Actualités de l'association"
+  news_featured_badge: "À la une"
+  news_none_featured: "Aucune actualité à la une"
+  news_quick_picks: "Sélection rapide"
+  news_none_additional: "Aucune actualité supplémentaire"
+  news_read_more: "Lire"
+  news_none: "Aucune actualité disponible"
+  gallery_none: "Aucune photo téléchargée pour le moment."
+
+about:
+  title: "À propos"
+  subtitle: "Association des communautés soudanaises - Rennes"
+  vision: "Vision"
+  message: "Mission"
+  goals: "Objectifs de l'association"
+  vision_text: "Être une association des communautés soudanaises à Rennes : une plateforme qui rassemble les membres de la communauté et soutient l’éducation, ainsi que les activités culturelles et sociales."
+  message_text: "Renforcer la communication entre les membres de la communauté soudanaise et offrir un environnement éducatif et culturel qui contribue au développement des générations à venir."
+  goal1: "Renforcer les liens entre les membres de la communauté soudanaise"
+  goal2: "Soutenir l’éducation et les programmes académiques"
+  goal3: "Organiser des activités culturelles et sociales"
+  goal4: "Servir la communauté soudanaise à Rennes"
+
+news:
+  title: "Actualités"
+  no_news: "Aucune actualité pour le moment"
+  show_details: "Voir les détails"
+
+events:
+  title: "Événements"
+  item: "Événement"
+  detail_unavailable: "Les détails de l'événement ne sont pas disponibles actuellement dans le modèle de données."
+  none: "Aucun événement"
+
+statistics:
+  title: "Secrétariat des statistiques"
+  students_count_title: "Nombre d'étudiants"
+  attendance_count_title: "Nombre de présences"
+
+guardian:
+  title: "Liste des tuteurs"
+  add: "Ajouter un tuteur"
+  id: "ID"
+  name: "Nom"
+  none: "Aucun tuteur trouvé"
+
+media:
+  title: "Secrétariat média"
+  text: "Le contenu média sera disponible bientôt."
+
+members:
+  title: "Membres"
+  text: "La liste des membres sera disponible bientôt."
+
+search:
+  title: "Recherche"
+  text: "Les résultats de recherche apparaîtront ici."
+
+test:
+  title: "Page de test"
+  text: "Ceci est une page fictive."
+
+contact:
+  name: "Nom"
+  email: "Adresse e-mail"
+  subject: "Sujet"
+  message: "Message"
+  send: "Envoyer le message"
+  title: "Contactez-nous"
+  info_title: "Informations de contact"
+  location_label: "Emplacement"
+  email_short: "E-mail"
+  phone_label: "Téléphone"
+
+auth:
+  login_title: "Connexion"
+  email: "E-mail"
+  password: "Mot de passe"
+  remember_me: "Se souvenir de moi"
+  sign_in: "Se connecter"
+  login_h1: "Veuillez vous connecter"
+  email_label: "E-mail"
+  password_label: "Mot de passe"
+  sign_in_submit: "Se connecter"
+  logged_in_as: "Connecté en tant que %user%"
+  logout: "Se déconnecter"
+  register_title: "Créer un compte"
+  register_h1: "Créer un compte"
+  register_submit: "S'inscrire"
+  image_label: "Image"
+

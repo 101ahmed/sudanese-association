@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container mt-5 page-wrap">
+
+        <h2>📊 {{ 'statistics.title'|trans }}</h2>
+
+        <div class="row mt-4 g-4">
+
+            <div class="col-md-6">
+                <div class="card p-4 text-center shadow-sm h-100">
+                    <h5>{{ 'statistics.students_count_title'|trans }}</h5>
+                    <h2>{{ students }}</h2>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card p-4 text-center shadow-sm h-100">
+                    <h5>{{ 'statistics.attendance_count_title'|trans }}</h5>
+                    <h2>{{ attendance }}</h2>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+{% endblock %}

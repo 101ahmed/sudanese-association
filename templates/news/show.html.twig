@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ news.title }}{% endblock %}
+
+{% block body %}
+    <div class="container page-wrap">
+        <article class="page-card ui-fade-in">
+            <h1 class="mb-3">{{ news.title }}</h1>
+            <p class="text-muted small mb-4">
+                {{ news.createdAt ? news.createdAt|date('Y-m-d H:i') : '' }}
+            </p>
+
+            {% if news.image %}
+                <img src="{{ asset('uploads/' ~ news.image) }}"
+                     alt="{{ news.title }}"
+                     class="img-fluid rounded mb-4 news-list-img">
+            {% endif %}
+
+            <div class="mb-4">
+                {{ news.content|nl2br }}
+            </div>
+
+            <a href="{{ path('public_news_list') }}" class="btn btn-outline-primary">
+                ← {{ 'home.news_show_all'|trans }}
+            </a>
+        </article>
+    </div>
+{% endblock %}
+

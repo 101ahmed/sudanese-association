@@ -1,0 +1,134 @@
+nav:
+  home: "Home"
+  about: "About us"
+  news: "News"
+  contact: "Contact"
+  committee: "Committees"
+  events: "Events"
+  committee_chair: "Association Chair"
+  committee_general: "General Secretariat"
+  committee_academic: "Academic Secretariat"
+  committee_social: "Social Secretariat"
+  committee_communication: "Communication Secretariat"
+  committee_women_children: "Women & Children Affairs"
+  committee_statistics: "Statistics Secretariat"
+  committee_external: "External Secretariat"
+  committee_media: "Media Secretariat"
+  committee_shura: "Shura Council"
+  committee_fathers: "Fathers Council"
+  login: "Login"
+  register: "Create account"
+
+app:
+  title: "Sudanese Association Rennes"
+
+footer:
+  title: "Sudanese Association Rennes"
+
+home:
+  sections: "Site sections"
+  stats_title: "Association statistics"
+  contact_title: "Contact us"
+  contact_text: "Send us a message using the contact form. We will review your request and reply soon."
+  gallery_title: "Photo gallery"
+  hero:
+    title: "Sudanese Community Association - Rennes"
+    subtitle: "A platform to serve community members and organize education, cultural and social activities."
+  stats_students: "Students"
+  stats_students_singular: "Student"
+  stats_guardians_singular: "Tutor/Coordinator"
+  stats_attendance_singular: "Attendance"
+  stats_events: "Event"
+  stats_news: "News"
+  stats_news_singular: "News item"
+  news_show_all: "Show all"
+  news_subtitle: "Updates from the association"
+  news_featured_badge: "Featured"
+  news_none_featured: "No featured news available"
+  news_quick_picks: "Quick picks"
+  news_none_additional: "No additional news"
+  news_read_more: "Read more"
+  news_none: "No news available"
+  gallery_none: "No uploaded photos available."
+
+about:
+  title: "About us"
+  subtitle: "Sudanese Community Association - Rennes"
+  vision: "Vision"
+  message: "Mission"
+  goals: "Association objectives"
+  vision_text: "To be a Sudanese Community Association in Rennes: a platform that brings together community members and supports education, as well as cultural and social activities."
+  message_text: "Strengthen communication among Sudanese community members and provide an educational and cultural environment that helps nurture future generations."
+  goal1: "Strengthen the bonds among Sudanese community members"
+  goal2: "Support education and academic programs"
+  goal3: "Organize cultural and social activities"
+  goal4: "Serve the Sudanese community in Rennes"
+
+news:
+  title: "News"
+  no_news: "No news right now"
+  show_details: "View details"
+
+events:
+  title: "Events"
+  item: "Event"
+  detail_unavailable: "Event details are not available currently in the current data model."
+  none: "No events available"
+
+statistics:
+  title: "Statistics Secretariat"
+  students_count_title: "Number of Students"
+  attendance_count_title: "Number of Attendance"
+
+guardian:
+  title: "Guardians List"
+  add: "Add guardian"
+  id: "ID"
+  name: "Name"
+  none: "No guardians found"
+
+media:
+  title: "Media Secretariat"
+  text: "Media content will be available soon."
+
+members:
+  title: "Association Members"
+  text: "The members list will be available soon."
+
+search:
+  title: "Search"
+  text: "Search results will appear here."
+
+test:
+  title: "Test page"
+  text: "This is a placeholder page."
+
+contact:
+  name: "Name"
+  email: "Email address"
+  subject: "Subject"
+  message: "Message"
+  send: "Send message"
+  title: "Contact us"
+  info_title: "Contact information"
+  location_label: "Location"
+  email_short: "Email"
+  phone_label: "Phone"
+
+auth:
+  login_title: "Login"
+  email: "Email"
+  password: "Password"
+  remember_me: "Remember me"
+  sign_in: "Sign in"
+  login_h1: "Please sign in"
+  email_label: "Email"
+  password_label: "Password"
+  sign_in_submit: "Sign in"
+  logged_in_as: "You are logged in as %user%"
+  logout: "Logout"
+  register_title: "Create account"
+  register_h1: "Create account"
+  register_submit: "Register"
+  image_label: "Image"
+

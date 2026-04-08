@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\Attendance;
 use App\Entity\Guardian;
@@ -20,9 +20,7 @@ class AcademicController extends AbstractController
 
         $today = new \DateTime('today');
 
-        $qb = $em->createQueryBuilder();
-
-        $attendanceCount = (int) $qb
+        $attendanceCount = (int) $em->createQueryBuilder()
             ->select('COUNT(DISTINCT a.student)')
             ->from(Attendance::class, 'a')
             ->where('a.date = :today')
@@ -30,25 +28,26 @@ class AcademicController extends AbstractController
             ->getQuery()
             ->getSingleScalarResult();
 
-        $attendanceRate = 0;
-        if ($studentsCount > 0) {
-            $attendanceRate = round(($attendanceCount / $studentsCount) * 100, 2);
-        }
+        $attendanceRate = $studentsCount > 0
+            ? round(($attendanceCount / $studentsCount) * 100, 2)
+            : 0;
 
         $students = $em->getRepository(Student::class)
             ->findBy([], ['id' => 'DESC'], 5);
 
-        return $this->render('academic/index.html.twig', [
+        return $this->render('admin/academic/index.html.twig', [
             'studentsCount' => $studentsCount,
             'guardiansCount' => $guardiansCount,
             'attendanceCount' => $attendanceCount,
             'attendanceRate' => $attendanceRate,
             'students' => $students,
+
+            // 🔥 الحل هنا
             'chartData' => [
                 'students' => $studentsCount,
                 'guardians' => $guardiansCount,
                 'attendance' => $attendanceCount,
-            ],
+            ]
         ]);
     }
 }

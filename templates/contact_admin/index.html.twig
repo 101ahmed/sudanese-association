@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}الرسائل{% endblock %}
+
+{% block body %}
+
+    <div class="container mt-5">
+
+        <h2 class="mb-4">📩 رسائل المستخدمين</h2>
+
+        <table class="table table-bordered table-striped">
+
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>الاسم</th>
+                <th>البريد</th>
+                <th>الموضوع</th>
+                <th>الرسالة</th>
+                <th>التاريخ</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for msg in messages %}
+                <tr>
+                    <td>{{ msg.id }}</td>
+                    <td>{{ msg.name }}</td>
+                    <td>{{ msg.email }}</td>
+                    <td>{{ msg.subject }}</td>
+                    <td>{{ msg.message|slice(0,50) }}...</td>
+                    <td>{{ msg.createdAt|date('Y-m-d H:i') }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6" class="text-center">
+                        لا توجد رسائل
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+
+    </div>
+
+{% endblock %}

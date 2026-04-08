@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container mt-5">
+
+        <a href="{{ path('news_list') }}" class="btn btn-secondary mb-3">← رجوع</a>
+
+        <div class="card p-4 shadow">
+
+            {% if news.image %}
+                <img src="/uploads/{{ news.image }}" width="100%">
+            {% endif %}
+
+            <h2>{{ news.title }}</h2>
+            <p>{{ news.content }}</p>
+
+        </div>
+
+    </div>
+
+{% endblock %}

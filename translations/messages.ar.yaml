@@ -1,0 +1,135 @@
+nav:
+  home: "الرئيسية"
+  about: "من نحن"
+  news: "الأخبار"
+  contact: "تواصل"
+  committee: "الأمانات"
+  events: "الفعاليات"
+  committee_chair: "رئيس الرابطة"
+  committee_general: "الأمانة العامة"
+  committee_academic: "الأمانة الأكاديمية"
+  committee_social: "الأمانة الأجتماعية"
+  committee_communication: "الأمانة الاعلامية"
+  committee_women_children: "شئون المرأة و الطفل"
+  committee_statistics: "أمانة الإحصاء"
+  committee_external: "الأمانة الخارجية"
+  committee_media: "أمانة الإعلام"
+  committee_shura: "قسم مجلس الشورى"
+  committee_fathers: "قسم مجلس الاباء"
+  login: "تسجيل دخول"
+  register: "تسجيل حساب"
+
+app:
+  title: "رابطة الجالية السودانية في Rennes"
+
+footer:
+  title: "رابطة الجالية السودانية برين"
+
+home:
+  sections: "أقسام الموقع"
+  stats_title: "إحصائيات الرابطة"
+  contact_title: "تواصل معنا"
+  contact_text: "راسلنا عبر نموذج التواصل، وسنقوم بمراجعة رسالتك والرد عليك في أقرب وقت."
+  gallery_title: "معرض الصور"
+  hero:
+    title: "رابطة الجالية السودانية برين"
+    subtitle: "منصة لخدمة أبناء الجالية وتنظيم التعليم والأنشطة الثقافية والاجتماعية"
+  stats_students: "طلاب"
+  stats_students_singular: "طالب"
+  stats_guardians_singular: "توتور/مشرف"
+  stats_attendance_singular: "حضور"
+  stats_events: "فعالية"
+  stats_news: "أخبار"
+  stats_news_singular: "خبر"
+  news_show_all: "عرض الكل"
+  news_subtitle: "تحديثات من الرابطة"
+  news_featured_badge: "الأبرز"
+  news_none_featured: "لا توجد أخبار مميزة"
+  news_quick_picks: "مختارات سريعة"
+  news_none_additional: "لا توجد أخبار إضافية"
+  news_read_more: "اقرأ المزيد"
+  news_none: "لا توجد أخبار"
+  gallery_none: "لا توجد صور مرفوعة حالياً."
+
+about:
+  title: "من نحن"
+  subtitle: "رابطة الجالية السودانية برين"
+  vision: "الرؤية"
+  message: "الرسالة"
+  goals: "أهداف الرابطة"
+  vision_text: "أن تكون رابطة الجالية السودانية في Rennes منصة تجمع أبناء الجالية وتدعم التعليم والأنشطة الثقافية والاجتماعية."
+  message_text: "تعزيز التواصل بين أبناء الجالية السودانية وتوفير بيئة تعليمية وثقافية تساعد على تنمية الأجيال القادمة."
+  goal1: "تعزيز الروابط بين أبناء الجالية السودانية"
+  goal2: "دعم التعليم والبرامج الأكاديمية"
+  goal3: "تنظيم الأنشطة الثقافية والاجتماعية"
+  goal4: "خدمة المجتمع السوداني في Rennes"
+
+news:
+  title: "الأخبار"
+  no_news: "لا توجد أخبار حاليًا"
+  show_details: "عرض التفاصيل"
+
+events:
+  title: "الفعاليات"
+  item: "فعالية"
+  detail_unavailable: "تفاصيل الفعالية غير متاحة حالياً في نموذج البيانات الحالي."
+  none: "لا توجد فعاليات"
+
+statistics:
+  title: "أمانة الإحصاء"
+  students_count_title: "عدد الطلاب"
+  attendance_count_title: "عدد الحضور"
+
+guardian:
+  title: "قائمة التوتور/المشرفين"
+  add: "إضافة توتور"
+  id: "المعرف"
+  name: "الاسم"
+  none: "لا يوجد توتور"
+
+media:
+  title: "أمانة الإعلام"
+  text: "محتوى الأمانة الإعلامية سيكون متاحاً قريباً."
+
+members:
+  title: "أعضاء الرابطة"
+  text: "ستظهر قائمة الأعضاء قريباً."
+
+search:
+  title: "البحث"
+  text: "ستظهر نتائج البحث هنا."
+
+test:
+  title: "صفحة اختبار"
+  text: "هذه صفحة تجريبية."
+
+contact:
+  name: "الاسم"
+  email: "البريد الإلكتروني"
+  subject: "الموضوع"
+  message: "الرسالة"
+  send: "إرسال الرسالة"
+  title: "تواصل معنا"
+  info_title: "معلومات التواصل"
+  location_label: "الموقع"
+  email_short: "البريد"
+  phone_label: "الهاتف"
+
+auth:
+  login_title: "تسجيل دخول"
+  email: "البريد"
+  password: "كلمة المرور"
+  login_h1: "من فضلك قم بتسجيل الدخول"
+  email_label: "البريد"
+  password_label: "كلمة المرور"
+  remember_me: "تذكرني"
+  sign_in: "تسجيل الدخول"
+  sign_in_submit: "تسجيل الدخول"
+  sign_in_h1: "من فضلك قم بتسجيل الدخول"
+  logged_in_as: "تم تسجيل الدخول باسم %user%"
+  logout: "تسجيل الخروج"
+  register_title: "تسجيل حساب"
+  register_h1: "إنشاء حساب"
+  register_submit: "تسجيل"
+  image_label: "الصورة"
+

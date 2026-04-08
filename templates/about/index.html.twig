@@ -1,53 +1,39 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}من نحن{% endblock %}
+{% block title %}{{ 'about.title'|trans }}{% endblock %}
 
 {% block body %}
 
-    <section class="bg-dark text-white text-center p-5">
+    <section class="bg-dark text-white text-center p-5 page-wrap">
 
-        <h1>
-            من نحن
-        </h1>
+        <h1>{{ 'about.title'|trans }}</h1>
 
-        <p class="lead">
-            رابطة الجالية السودانية برين
-        </p>
+        <p class="lead">{{ 'about.subtitle'|trans }}</p>
 
     </section>
 
 
     <section class="container mt-5">
 
-        <div class="row">
+        <div class="row g-4">
 
             <div class="col-md-6">
+                <div class="page-card h-100">
 
-                <h2>الرؤية</h2>
+                <h2>{{ 'about.vision'|trans }}</h2>
 
-                <p>
-
-                    أن تكون رابطة الجالية السودانية في Rennes
-                    منصة تجمع أبناء الجالية وتدعم التعليم
-                    والأنشطة الثقافية والاجتماعية.
-
-                </p>
-
+                <p>{{ 'about.vision_text'|trans }}</p>
+                </div>
             </div>
 
 
             <div class="col-md-6">
+                <div class="page-card h-100">
 
-                <h2>الرسالة</h2>
+                <h2>{{ 'about.message'|trans }}</h2>
 
-                <p>
-
-                    تعزيز التواصل بين أبناء الجالية السودانية
-                    وتوفير بيئة تعليمية وثقافية تساعد
-                    على تنمية الأجيال القادمة.
-
-                </p>
-
+                <p>{{ 'about.message_text'|trans }}</p>
+                </div>
             </div>
 
         </div>
@@ -57,26 +43,24 @@
 
     <section class="container mt-5">
 
-        <h2 class="text-center mb-4">
-            أهداف الرابطة
-        </h2>
+        <h2 class="text-center mb-4">{{ 'about.goals'|trans }}</h2>
 
-        <ul class="list-group">
+        <ul class="list-group page-card">
 
             <li class="list-group-item">
-                تعزيز الروابط بين أبناء الجالية السودانية
+                {{ 'about.goal1'|trans }}
             </li>
 
             <li class="list-group-item">
-                دعم التعليم والبرامج الأكاديمية
+                {{ 'about.goal2'|trans }}
             </li>
 
             <li class="list-group-item">
-                تنظيم الأنشطة الثقافية والاجتماعية
+                {{ 'about.goal3'|trans }}
             </li>
 
             <li class="list-group-item">
-                خدمة المجتمع السوداني في Rennes
+                {{ 'about.goal4'|trans }}
             </li>
 
         </ul>

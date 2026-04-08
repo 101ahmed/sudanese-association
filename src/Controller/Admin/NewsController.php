@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Entity\News;
 use App\Form\NewsType;
@@ -9,10 +9,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
+#[IsGranted('ROLE_ADMIN')]
 class NewsController extends AbstractController
 {
-    #[Route('/news', name: 'news_list')]
+    #[Route('/admin/news', name: 'news_list')]
     public function index(Request $request, EntityManagerInterface $em): Response
     {
         $search = $request->query->get('q');
@@ -24,17 +26,17 @@ class NewsController extends AbstractController
 
         if ($search) {
             $qb->andWhere('n.title LIKE :q')
-                ->setParameter('q', '%' . $search . '%');
+                ->setParameter('q', '%'.$search.'%');
         }
 
         $news = $qb->getQuery()->getResult();
 
-        return $this->render('news/index.html.twig', [
+        return $this->render('admin/news/index.html.twig', [
             'news' => $news
         ]);
     }
 
-    #[Route('/news/create', name: 'news_create')]
+    #[Route('/admin/news/create', name: 'news_create')]
     public function create(Request $request, EntityManagerInterface $em): Response
     {
         $news = new News();
@@ -48,7 +50,7 @@ class NewsController extends AbstractController
             $imageFile = $form->get('image')->getData();
 
             if ($imageFile) {
-                $fileName = uniqid().'.'.$imageFile->guessExtension();
+                $fileName = uniqid() . 'Controller' .$imageFile->guessExtension();
                 $imageFile->move(
                     $this->getParameter('kernel.project_dir').'/public/uploads',
                     $fileName
@@ -62,12 +64,20 @@ class NewsController extends AbstractController
             return $this->redirectToRoute('news_list');
         }
 
-        return $this->render('news/create.html.twig', [
+        return $this->render('admin/news/create.html.twig', [
             'form' => $form->createView()
         ]);
     }
 
-    #[Route('/news/{id}/edit', name: 'news_edit')]
+    #[Route('/admin/news/{id}', name: 'news_show')]
+    public function show(News $news): Response
+    {
+        return $this->render('admin/news/show.html.twig', [
+            'news' => $news
+        ]);
+    }
+
+    #[Route('/admin/news/{id}/edit', name: 'news_edit')]
     public function edit(News $news, Request $request, EntityManagerInterface $em): Response
     {
         $form = $this->createForm(NewsType::class, $news);
@@ -78,7 +88,7 @@ class NewsController extends AbstractController
             $imageFile = $form->get('image')->getData();
 
             if ($imageFile) {
-                $fileName = uniqid().'.'.$imageFile->guessExtension();
+                $fileName = uniqid() . 'Controller' .$imageFile->guessExtension();
                 $imageFile->move(
                     $this->getParameter('kernel.project_dir').'/public/uploads',
                     $fileName
@@ -91,12 +101,12 @@ class NewsController extends AbstractController
             return $this->redirectToRoute('news_list');
         }
 
-        return $this->render('news/edit.html.twig', [
+        return $this->render('admin/news/edit.html.twig', [
             'form' => $form->createView()
         ]);
     }
 
-    #[Route('/news/{id}/delete', name: 'news_delete')]
+    #[Route('/admin/news/{id}/delete', name: 'news_delete')]
     public function delete(News $news, EntityManagerInterface $em): Response
     {
         $em->remove($news);

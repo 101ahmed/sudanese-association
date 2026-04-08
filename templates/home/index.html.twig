@@ -4,379 +4,265 @@
 
 {% block body %}
 
-    <!-- HERO SECTION -->
-
-    <section class="bg-success text-white text-center p-5">
-
+    <!-- HERO -->
+    <section class="bbc-hero bg-success text-white text-center p-5">
         <div class="container">
-
-            <h1 class="display-4">
-                رابطة الجالية السودانية برين
-            </h1>
-
-            <p class="lead mt-3">
-                منصة لخدمة أبناء الجالية وتنظيم التعليم والأنشطة الثقافية والاجتماعية
-            </p>
-
-            <div class="mt-4">
-
-                <a href="#" class="btn btn-light btn-lg me-3">
-                    تسجيل طالب
-                </a>
-
-                <a href="#" class="btn btn-outline-light btn-lg">
-                    تعرف علينا
-                </a>
-
-            </div>
-
+            <h1 class="display-4">{{ 'home.hero.title'|trans }}</h1>
+            <p class="lead mt-3">{{ 'home.hero.subtitle'|trans }}</p>
         </div>
-
     </section>
-
 
     <!-- ABOUT -->
-
-    <section class="container mt-5 text-center">
-
-        <h2 class="mb-4">من نحن</h2>
-
-        <p class="lead">
-
-            تسعى رابطة الجالية السودانية في مدينة Rennes إلى تعزيز الروابط
-            بين أبناء الجالية، ودعم التعليم والأنشطة الثقافية والاجتماعية،
-            وتوفير بيئة تعليمية متميزة لأبناء الجالية.
-
-        </p>
-
-    </section>
-
+{#    <section class="container mt-5 text-center">#}
+{#        <h2>من نحن</h2>#}
+{#        <p class="lead">#}
+{#            دعم التعليم والأنشطة الثقافية والاجتماعية للجالية السودانية#}
+{#        </p>#}
+{#    </section>#}
 
     <!-- MAIN SECTIONS -->
-
-    <section class="container mt-5">
-
-        <h2 class="text-center mb-5">أقسام الموقع</h2>
+    <section class="container mt-5 bbc-quick">
+{#        <h2 class="text-center mb-5">أقسام الموقع</h2>#}
+        <h2 class="text-center mb-5">{{ 'home.sections'|trans }}</h2>
 
         <div class="row text-center g-4">
-
             <div class="col-md-3">
-
-                <div class="card shadow">
-
+                <a href="{{ path('committee_academic') }}" class="bbc-card-link">
+                <div class="card shadow-sm bbc-info-card h-100">
                     <div class="card-body">
-
-                        <h5 class="card-title">
-                            الأمانة الأكاديمية
-                        </h5>
-
-                        <p class="card-text">
-                            إدارة البرامج التعليمية ومتابعة الطلاب
-                        </p>
-
+                        <h5>{{ 'nav.committee_academic'|trans }}</h5>
+                        <p class="mb-0">{{ 'home.stats_students'|trans }}: {{ studentsCount }}</p>
                     </div>
-
                 </div>
-
+                </a>
             </div>
 
-
             <div class="col-md-3">
-
-                <div class="card shadow">
-
+                <a href="{{ path('committee_statistics') }}" class="bbc-card-link">
+                <div class="card shadow-sm bbc-info-card h-100">
                     <div class="card-body">
-
-                        <h5 class="card-title">
-                            أمانة الإحصاء
-                        </h5>
-
-                        <p class="card-text">
-                            تحليل البيانات وإعداد التقارير
-                        </p>
-
+                        <h5>{{ 'nav.committee_statistics'|trans }}</h5>
+                        <p class="mb-0">{{ 'home.stats_attendance'|trans }}: {{ attendanceCount }}</p>
                     </div>
-
                 </div>
-
+                </a>
             </div>
 
-
             <div class="col-md-3">
-
-                <div class="card shadow">
-
+                <a href="{{ path('committee_events') }}" class="bbc-card-link">
+                <div class="card shadow-sm bbc-info-card h-100">
                     <div class="card-body">
-
-                        <h5 class="card-title">
-                            الفعاليات
-                        </h5>
-
-                        <p class="card-text">
-                            تنظيم الأنشطة الثقافية والاجتماعية
-                        </p>
-
+                        <h5>{{ 'nav.events'|trans }}</h5>
+                        <p class="mb-0">{{ 'home.stats_events'|trans }}: {{ eventsCount }}</p>
                     </div>
-
                 </div>
-
+                </a>
             </div>
 
-
             <div class="col-md-3">
-
-                <div class="card shadow">
-
+                <a href="{{ path('public_news_list') }}" class="bbc-card-link">
+                <div class="card shadow-sm bbc-info-card h-100">
                     <div class="card-body">
-
-                        <h5 class="card-title">
-                            الأخبار
-                        </h5>
-
-                        <p class="card-text">
-                            آخر أخبار الرابطة
-                        </p>
-
+                        <h5>{{ 'nav.news'|trans }}</h5>
+                        <p class="mb-0">{{ 'home.stats_news'|trans }}: {{ (featured ? 1 : 0) + (news|length) }}</p>
                     </div>
-
                 </div>
-
+                </a>
             </div>
-
         </div>
-
     </section>
-
 
     <!-- STATISTICS -->
+    <section class="bg-light mt-5 p-5 text-center">
+        {% set newsTotal = (featured ? 1 : 0) + (news|length) %}
+        <h2 class="mb-5">{{ 'home.stats_title'|trans }}</h2>
 
-    <section class="bg-light mt-5 p-5">
-
-        <div class="container text-center">
-
-            <h2 class="mb-5">
-                إحصائيات الرابطة
-            </h2>
-
-            <div class="row">
-
-                <div class="col-md-3">
-
-                    <h3>120</h3>
-
-                    <p>طالب</p>
-
+        <div class="row g-4 justify-content-center">
+            <div class="col-12 col-md-3">
+                <div class="bbc-stats-card">
+                    <h3 class="mb-1">{{ studentsCount }}</h3>
+                    <p class="mb-0">{{ 'home.stats_students_singular'|trans }}</p>
                 </div>
+            </div>
 
-
-                <div class="col-md-3">
-
-                    <h3>15</h3>
-
-                    <p>معلم</p>
-
+            <div class="col-12 col-md-3">
+                <div class="bbc-stats-card">
+                    <h3 class="mb-1">{{ guardiansCount }}</h3>
+                    <p class="mb-0">{{ 'home.stats_guardians_singular'|trans }}</p>
                 </div>
+            </div>
 
-
-                <div class="col-md-3">
-
-                    <h3>40</h3>
-
-                    <p>متطوع</p>
-
+            <div class="col-12 col-md-3">
+                <div class="bbc-stats-card">
+                    <h3 class="mb-1">{{ attendanceCount }}</h3>
+                    <p class="mb-0">{{ 'home.stats_attendance_singular'|trans }}</p>
                 </div>
+            </div>
 
-
-                <div class="col-md-3">
-
-                    <h3>25</h3>
-
-                    <p>فعالية</p>
-
+            <div class="col-12 col-md-3">
+                <div class="bbc-stats-card">
+                    <h3 class="mb-1">{{ newsTotal }}</h3>
+                    <p class="mb-0">{{ 'home.stats_news_singular'|trans }}</p>
                 </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- 🔥 NEWS (BBC Grid) -->
+    <section class="container mt-5 bbc-news">
+
+        <div class="bbc-news-header d-flex justify-content-between align-items-center mb-4">
+            <div class="bbc-news-title-wrap">
+                <h2 class="bbc-news-title mb-0">📰 {{ 'news.title'|trans }}</h2>
+                <span class="bbc-news-subtitle">{{ 'home.news_subtitle'|trans }}</span>
+            </div>
+
+            <a href="{{ path('public_news_list') }}" class="btn btn-outline-primary">{{ 'home.news_show_all'|trans }}</a>
+        </div>
+
+        <div class="row g-4 bbc-news-top align-items-stretch">
+
+            <div class="col-lg-7">
+                {% if featured %}
+                    <article class="bbc-featured-card h-100">
+                        <a href="{{ path('public_news_show', {id: featured.id}) }}" class="bbc-link">
+
+                            <div class="bbc-featured-media">
+                                {% if featured.image %}
+                                    <img src="/uploads/{{ featured.image }}"
+                                         alt="{{ featured.title }}"
+                                         class="bbc-featured-img">
+                                {% else %}
+                                    <img src="https://picsum.photos/900/500"
+                                         alt="{{ featured.title }}"
+                                         class="bbc-featured-img">
+                                {% endif %}
+
+                                <span class="bbc-featured-badge">{{ 'home.news_featured_badge'|trans }}</span>
+                            </div>
+
+                            <div class="bbc-featured-content">
+                                <div class="bbc-meta">
+                                    {{ featured.createdAt ? featured.createdAt|date('Y-m-d') : '' }}
+                                </div>
+                                <h3 class="bbc-featured-title">{{ featured.title }}</h3>
+                                <p class="bbc-featured-excerpt">
+                                    {{ featured.content|slice(0,180) }}...
+                                </p>
+                            </div>
+
+                        </a>
+                    </article>
+                {% else %}
+                    <div class="empty-state ui-fade-in">
+                        <div class="empty-state-icon">🗞️</div>
+                        <p class="mb-0">{{ 'home.news_none_featured'|trans }}</p>
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="col-lg-5">
+                <div class="bbc-side-list h-100">
+                    <div class="bbc-side-title">{{ 'home.news_quick_picks'|trans }}</div>
+
+                    {% set rightNews = news|slice(0,3) %}
+                    {% for item in rightNews %}
+                        <a href="{{ path('public_news_show', {id: item.id}) }}" class="bbc-side-item">
+                            <div class="bbc-side-thumb">
+                                {% if item.image %}
+                                    <img src="/uploads/{{ item.image }}" alt="{{ item.title }}">
+                                {% else %}
+                                    <img src="https://picsum.photos/220/140" alt="{{ item.title }}">
+                                {% endif %}
+                            </div>
+                            <div class="bbc-side-body">
+                                <div class="bbc-meta small">
+                                    {{ item.createdAt ? item.createdAt|date('Y-m-d') : '' }}
+                                </div>
+                                <div class="bbc-side-card-title">{{ item.title }}</div>
+                            </div>
+                        </a>
+                    {% else %}
+                        <div class="empty-state ui-fade-in">
+                            <div class="empty-state-icon">ℹ️</div>
+                            <p class="mb-0">{{ 'home.news_none_additional'|trans }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
 
         </div>
 
-    </section>
+        <div class="bbc-news-grid row g-4 mt-2">
+            {% set gridNews = news|slice(3) %}
+            {% for item in gridNews %}
+                <div class="col-md-6 col-xl-4">
+                    <div class="card h-100 shadow-sm bbc-news-card">
 
+                        {% if item.image %}
+                            <img src="/uploads/{{ item.image }}" class="bbc-news-img" alt="{{ item.title }}">
+                        {% else %}
+                            <img src="https://picsum.photos/400/200" class="bbc-news-img" alt="{{ item.title }}">
+                        {% endif %}
 
-    <!-- NEWS -->
+                        <div class="card-body bbc-news-body">
+                            <h5 class="card-title bbc-news-card-title">{{ item.title }}</h5>
+                            <div class="bbc-meta small">
+                                {{ item.createdAt ? item.createdAt|date('Y-m-d') : '' }}
+                            </div>
+                            <p class="bbc-news-excerpt">
+                                {{ item.content|slice(0,120) }}...
+                            </p>
+                        </div>
 
-    <section class="container mt-5">
-
-        <h2 class="text-center mb-5">
-            آخر الأخبار
-        </h2>
-
-        <div class="row g-4">
-
-
-            <div class="col-md-4">
-
-                <div class="card">
-
-                    <img src="https://picsum.photos/400/200" class="card-img-top">
-
-                    <div class="card-body">
-
-                        <h5 class="card-title">
-                            افتتاح العام الدراسي
-                        </h5>
-
-                        <p class="card-text">
-                            تم افتتاح العام الدراسي الجديد بحضور أعضاء الرابطة.
-                        </p>
-
+                        <div class="card-footer bg-white border-0">
+                            <a href="{{ path('public_news_show', {id: item.id}) }}" class="btn btn-primary w-100">
+                                {{ 'home.news_read_more'|trans }} →
+                            </a>
+                        </div>
                     </div>
-
                 </div>
-
-            </div>
-
-
-            <div class="col-md-4">
-
-                <div class="card">
-
-                    <img src="https://picsum.photos/401/200" class="card-img-top">
-
-                    <div class="card-body">
-
-                        <h5 class="card-title">
-                            فعالية ثقافية
-                        </h5>
-
-                        <p class="card-text">
-                            نظمت الرابطة فعالية ثقافية لتعزيز التواصل بين أبناء الجالية.
-                        </p>
-
+            {% else %}
+                <div class="col-12">
+                    <div class="empty-state ui-fade-in">
+                        <div class="empty-state-icon">📰</div>
+                        <p class="mb-0">{{ 'news.no_news'|trans }}</p>
                     </div>
-
                 </div>
-
-            </div>
-
-
-            <div class="col-md-4">
-
-                <div class="card">
-
-                    <img src="https://picsum.photos/402/200" class="card-img-top">
-
-                    <div class="card-body">
-
-                        <h5 class="card-title">
-                            برنامج دعم الطلاب
-                        </h5>
-
-                        <p class="card-text">
-                            إطلاق برنامج لدعم الطلاب في التحصيل الدراسي.
-                        </p>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
+            {% endfor %}
         </div>
 
     </section>
-
 
     <!-- GALLERY -->
-
     <section class="container mt-5">
+        <h2 class="text-center mb-5">{{ 'home.gallery_title'|trans }}</h2>
 
-        <h2 class="text-center mb-5">
-            معرض الصور
-        </h2>
-
-        <div class="row g-3">
-
-            <div class="col-md-3">
-                <img src="https://picsum.photos/300/200" class="img-fluid rounded">
+        {% if galleryImages is defined and galleryImages|length > 0 %}
+            <div class="row g-3 bbc-gallery">
+                {% for img in galleryImages %}
+                    <div class="col-md-3">
+                        <img src="/uploads/{{ img }}"
+                             class="img-fluid rounded bbc-gallery-img"
+                             alt="صورة">
+                    </div>
+                {% endfor %}
             </div>
-
-            <div class="col-md-3">
-                <img src="https://picsum.photos/301/200" class="img-fluid rounded">
+        {% else %}
+            <div class="empty-state ui-fade-in">
+                <div class="empty-state-icon">🖼️</div>
+                <p class="mb-0">{{ 'home.gallery_none'|trans }}</p>
             </div>
-
-            <div class="col-md-3">
-                <img src="https://picsum.photos/302/200" class="img-fluid rounded">
-            </div>
-
-            <div class="col-md-3">
-                <img src="https://picsum.photos/303/200" class="img-fluid rounded">
-            </div>
-
-        </div>
-
+        {% endif %}
     </section>
-
 
     <!-- CONTACT -->
-
-    <section class="bg-light mt-5 p-5">
-
-        <div class="container">
-
-            <h2 class="text-center mb-5">
-                تواصل معنا
-            </h2>
-
-            <div class="row justify-content-center">
-
-                <div class="col-md-6">
-
-                    <form>
-
-                        <div class="mb-3">
-
-                            <label class="form-label">
-                                الاسم
-                            </label>
-
-                            <input type="text" class="form-control">
-
-                        </div>
-
-                        <div class="mb-3">
-
-                            <label class="form-label">
-                                البريد الإلكتروني
-                            </label>
-
-                            <input type="email" class="form-control">
-
-                        </div>
-
-                        <div class="mb-3">
-
-                            <label class="form-label">
-                                الرسالة
-                            </label>
-
-                            <textarea class="form-control" rows="4"></textarea>
-
-                        </div>
-
-                        <button class="btn btn-success w-100">
-                            إرسال
-                        </button>
-
-                    </form>
-
-                </div>
-
-            </div>
-
+    <section class="bg-light mt-5 p-5 bbc-contact">
+        <div class="container text-center">
+            <h2 class="mb-3">{{ 'home.contact_title'|trans }}</h2>
+            <p class="text-muted mb-4">{{ 'home.contact_text'|trans }}</p>
+            <a href="{{ path('contact') }}" class="btn btn-success btn-lg">{{ 'contact.send'|trans }}</a>
         </div>
-
     </section>
-
 
 {% endblock %}

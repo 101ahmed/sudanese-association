@@ -105,14 +105,17 @@
             }
         });
 
+        const attendanceRateValue = {{ attendanceRate }};
+        const absenceRateValue = Math.max(0, 100 - attendanceRateValue);
+
         new Chart(document.getElementById('attendanceChart'), {
             type: 'doughnut',
             data: {
                 labels: ['حضور', 'غياب'],
                 datasets: [{
                     data: [
-                        {{ attendanceRate }},
-                        {{ 10 - attendanceRate }}
+                        attendanceRateValue,
+                        absenceRateValue
                     ],
                     backgroundColor: [
                         'rgba(75, 192, 192, 0.8)',

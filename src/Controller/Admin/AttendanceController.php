@@ -28,14 +28,22 @@ class AttendanceController extends AbstractController
                 return $this->redirectToRoute('attendance_create');
             }
 
-            // ✅ تاريخ اليوم فقط (بدون وقت)
-            $today = new \DateTime('today');
+            // ✅ حدود اليوم لاستخدام مقارنة تاريخ موثوقة
+            $todayStart = new \DateTimeImmutable('today');
+            $tomorrowStart = $todayStart->modify('+1 day');
 
             // ✅ تحقق من عدم التكرار
-            $existing = $em->getRepository(Attendance::class)->findOneBy([
-                'student' => $attendance->getStudent(),
-                'date' => $today
-            ]);
+            $existing = $em->getRepository(Attendance::class)
+                ->createQueryBuilder('a')
+                ->andWhere('a.student = :student')
+                ->andWhere('a.date >= :todayStart')
+                ->andWhere('a.date < :tomorrowStart')
+                ->setParameter('student', $attendance->getStudent())
+                ->setParameter('todayStart', $todayStart)
+                ->setParameter('tomorrowStart', $tomorrowStart)
+                ->setMaxResults(1)
+                ->getQuery()
+                ->getOneOrNullResult();
 
             if ($existing) {
                 $this->addFlash('error', 'هذا الطالب مسجل حضور بالفعل اليوم');
@@ -43,7 +51,7 @@ class AttendanceController extends AbstractController
             }
 
             // ✅ تعيين التاريخ
-            $attendance->setDate($today);
+            $attendance->setDate($todayStart);
 
             // ✅ حفظ
             $em->persist($attendance);

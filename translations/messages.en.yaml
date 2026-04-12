@@ -22,6 +22,9 @@ nav:
 app:
   title: "Sudanese Association Rennes"
 
+seo:
+  default_description: "Sudanese community association in Rennes — news, events, education, and social activities for members."
+
 footer:
   title: "Sudanese Association Rennes"
 

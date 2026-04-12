@@ -5,15 +5,18 @@ framework:
     # Note that the session will be started ONLY if you read or write from it.
     session: true
 
-    # Locale par défaut (sera remplacé تلقائياً حسب لغة المتصفح عبر Subscriber)
-    default_locale: 'ar'
-
-    translator:
-        default_path: '%kernel.project_dir%/translations'
-        fallbacks: ['en', 'fr']
-
     #esi: true
     #fragments: true
+
+when@prod:
+    framework:
+        # Reverse proxy (typical on shared hosting): correct scheme/host behind HTTPS.
+        trusted_proxies: 'PRIVATE_SUBNETS'
+        trusted_headers:
+            - 'x-forwarded-for'
+            - 'x-forwarded-proto'
+            - 'x-forwarded-port'
+            - 'x-forwarded-host'
 
 when@test:
     framework:

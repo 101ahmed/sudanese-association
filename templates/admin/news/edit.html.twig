@@ -7,7 +7,7 @@
 
     {% if news.image %}
         <div class="mb-3">
-            <img src="{{ asset('uploads/news/' ~ news.image) }}" alt="{{ news.title }}" width="180">
+            <img src="{{ asset('uploads/' ~ news.image) }}" alt="{{ news.title }}" width="180">
         </div>
     {% endif %}
 
@@ -17,6 +17,6 @@
     {{ form_row(form.imageFile) }}
 
     <button class="btn btn-primary">تحديث</button>
-    <a href="{{ path('admin_news_index') }}" class="btn btn-secondary">رجوع</a>
+    <a href="{{ path('news_list') }}" class="btn btn-secondary">رجوع</a>
     {{ form_end(form) }}
 {% endblock %}

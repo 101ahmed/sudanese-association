@@ -47,10 +47,11 @@ class NewsController extends AbstractController
 
             $news->setCreatedAt(new \DateTime());
 
-            $imageFile = $form->get('image')->getData();
+            $imageFile = $form->get('imageFile')->getData();
 
             if ($imageFile) {
-                $fileName = uniqid() . 'Controller' .$imageFile->guessExtension();
+                $ext = $imageFile->guessExtension() ?: 'jpg';
+                $fileName = uniqid('news_', true) . '.' . $ext;
                 $imageFile->move(
                     $this->getParameter('kernel.project_dir').'/public/uploads',
                     $fileName
@@ -85,10 +86,11 @@ class NewsController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $imageFile = $form->get('image')->getData();
+            $imageFile = $form->get('imageFile')->getData();
 
             if ($imageFile) {
-                $fileName = uniqid() . 'Controller' .$imageFile->guessExtension();
+                $ext = $imageFile->guessExtension() ?: 'jpg';
+                $fileName = uniqid('news_', true) . '.' . $ext;
                 $imageFile->move(
                     $this->getParameter('kernel.project_dir').'/public/uploads',
                     $fileName

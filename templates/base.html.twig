@@ -3,7 +3,35 @@
 <html lang="{{ app.request.locale }}" dir="{{ app.request.locale == 'ar' ? 'rtl' : 'ltr' }}">
 <head>
     <meta charset="UTF-8">
-    <title>{{ 'app.title'|trans }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %}{% if block('title')|trim %} | {% endif %}{{ 'app.title'|trans }}</title>
+    <meta name="description" content="{% block meta_description %}{{ 'seo.default_description'|trans }}{% endblock %}">
+    <meta name="robots" content="{% block meta_robots %}index, follow{% endblock %}">
+    <link rel="canonical" href="{% block canonical_url %}{{ app.request.schemeAndHttpHost ~ app.request.pathInfo }}{% endblock %}">
+
+    <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+    <meta property="og:site_name" content="{{ 'app.title'|trans }}">
+    <meta property="og:locale" content="{{ app.request.locale == 'ar' ? 'ar_AR' : (app.request.locale == 'fr' ? 'fr_FR' : 'en_US') }}">
+    <meta property="og:title" content="{{ block('title')|striptags|trim }}{% if block('title')|trim %} | {% endif %}{{ 'app.title'|trans }}">
+    <meta property="og:description" content="{{ block('meta_description')|striptags|trim }}">
+    <meta property="og:url" content="{% block og_url %}{{ app.request.schemeAndHttpHost ~ app.request.pathInfo }}{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{{ absolute_url(asset('image/photo01.jpg')) }}{% endblock %}">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ block('title')|striptags|trim }}{% if block('title')|trim %} | {% endif %}{{ 'app.title'|trans }}">
+    <meta name="twitter:description" content="{{ block('meta_description')|striptags|trim }}">
+
+    {% block head_json_ld %}
+    <script type="application/ld+json">{{ {
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        'name': 'app.title'|trans,
+        'url': app.request.schemeAndHttpHost
+    }|json_encode(constant('JSON_UNESCAPED_UNICODE'))|raw }}</script>
+    {% endblock %}
+
+    {% block head_extra %}{% endblock %}
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="/css/style.css">

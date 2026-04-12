@@ -1,5 +1,6 @@
+# Locale & translator (single place; Flex recipe default is "en" — overridden here)
 framework:
-    default_locale: en
+    default_locale: ar
     translator:
         default_path: '%kernel.project_dir%/translations'
-        providers:
+        fallbacks: [en, fr]

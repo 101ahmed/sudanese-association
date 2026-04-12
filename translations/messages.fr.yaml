@@ -21,6 +21,10 @@ nav:
 
 app:
   title: "Association des Congés Soudanaise à Rennes"
+
+seo:
+  default_description: "Association de la communauté soudanaise à Rennes — actualités, événements, activités éducatives et sociales."
+
 footer:
   title: "Association des Congés Soudanaise à Rennes"
 

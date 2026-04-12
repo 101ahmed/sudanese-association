@@ -2,6 +2,14 @@
 
 {% block title %}{{ news.title }}{% endblock %}
 
+{% block meta_description %}{{ news.content|striptags|slice(0, 160) }}{% if news.content|striptags|length > 160 %}…{% endif %}{% endblock %}
+
+{% block canonical_url %}{{ url('public_news_show', {id: news.id}) }}{% endblock %}
+{% block og_url %}{{ url('public_news_show', {id: news.id}) }}{% endblock %}
+{% block og_type %}article{% endblock %}
+
+{% block og_image %}{% if news.image %}{{ absolute_url(asset('uploads/' ~ news.image)) }}{% else %}{{ absolute_url(asset('image/photo01.jpg')) }}{% endif %}{% endblock %}
+
 {% block body %}
     <div class="container page-wrap">
         <article class="page-card ui-fade-in">

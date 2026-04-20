@@ -74,6 +74,8 @@ class HomeController extends AbstractController
             $news = $newsRepo->findBy([], ['id' => 'DESC'], 6);
         }
 
+        $newsCount = $newsRepo->count([]);
+
         return $this->render('home/index.html.twig', [
             'studentsCount' => $studentsCount,
             'guardiansCount' => $guardiansCount,
@@ -81,6 +83,7 @@ class HomeController extends AbstractController
             'eventsCount' => $eventsCount,
             'featured' => $featured,
             'news' => $news,
+            'newsCount' => $newsCount,
             'galleryImages' => $galleryImages,
         ]);
     }

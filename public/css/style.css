@@ -328,6 +328,28 @@ nav a{
     border-top: 1px solid rgba(255,255,255,0.1);
 }
 
+.app-footer-social {
+    flex-wrap: wrap;
+}
+
+.app-social-icon {
+    width: 46px;
+    height: 46px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 50%;
+}
+
+.app-social-icon svg {
+    width: 22px;
+    height: 22px;
+    fill: currentColor;
+}
+
 /* Keep Bootstrap cards responsive (old custom width override) */
 body .card {
     width: auto;

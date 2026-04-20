@@ -1,5 +1,8 @@
 nav:
   home: "Accueil"
+  programs: "Programmes"
+  goals: "Objectifs"
+  reviews: "Avis des membres"
   about: "À propos"
   news: "Actualités"
   contact: "Contact"
@@ -22,11 +25,22 @@ nav:
 app:
   title: "Association des Congés Soudanaise à Rennes"
 
+common:
+  search: "Recherche"
+  menu: "Menu"
+  close: "Fermer"
+
 seo:
   default_description: "Association de la communauté soudanaise à Rennes — actualités, événements, activités éducatives et sociales."
 
 footer:
   title: "Association des Congés Soudanaise à Rennes"
+  location: "Rennes, France"
+  quick_links: "Liens rapides"
+  contact_heading: "Coordonnées"
+  contact_note: "Disponibles pour la coordination et les initiatives communautaires"
+  social_heading: "Suivez-nous"
+  credit_prefix: "Tous droits réservés"
 
 home:
   sections: "Sections du site"
@@ -35,9 +49,14 @@ home:
   contact_text: "Envoyez-nous un message via le formulaire. Nous analyserons votre demande et vous répondrons rapidement."
   gallery_title: "Galerie photo"
   hero:
+    kicker: "Une communauté soudanaise solidaire"
     title: "Association des Communautés Sudanaises - Rennes"
     subtitle: "Une plateforme pour soutenir la communauté et organiser l’éducation, les activités culturelles et sociales."
+    stat_community_desc: "Familles, étudiants et tuteurs réunis"
+    stat_programs_desc: "Événements et activités toute l’année"
+    stat_news_desc: "Nouvelles de l’association"
   stats_students: "Étudiants"
+  stats_attendance: "Présences"
   stats_students_singular: "Étudiant"
   stats_guardians_singular: "Tuteur/Responsable"
   stats_attendance_singular: "Présence"
@@ -53,6 +72,68 @@ home:
   news_read_more: "Lire"
   news_none: "Aucune actualité disponible"
   gallery_none: "Aucune photo téléchargée pour le moment."
+  programs:
+    subheading: "Nos programmes"
+    heading: "Principaux domaines d'action"
+    item1_title: "Lien social"
+    item1_text: "Organiser des rencontres qui réunissent les membres de la communauté soudanaise à Rennes et renforcent la solidarité."
+    item2_title: "Soutien aux étudiants"
+    item2_text: "Aider les nouveaux étudiants à s'intégrer et à échanger leurs expériences avec la communauté."
+    item3_title: "Activités culturelles"
+    item3_text: "Faire connaître la culture soudanaise à la société locale par des activités culturelles et sociales."
+    item4_title: "Soutien communautaire"
+    item4_text: "Lancer des initiatives qui soutiennent les familles et les individus à Rennes."
+    item5_title: "Initiatives des jeunes"
+    item5_text: "Encourager les jeunes à proposer des idées et des projets à impact positif."
+    item6_title: "Partenariats"
+    item6_text: "Construire une coopération avec les associations et institutions locales qui partagent nos objectifs."
+  about_split:
+    subheading: "À propos"
+    heading: "À propos de l'Association Soudanaise de Rennes"
+    card_title: "Identité soudanaise et esprit collectif"
+    card_text: "L'association est une plateforme communautaire qui rassemble les Soudanais à Rennes sous un même cadre préservant l'identité et la coopération."
+    text1: "Nous visons à construire une communauté soudanaise solidaire à Rennes fondée sur la coopération, l'entraide et le partage d'expériences."
+    text2: "Nous travaillons sur des activités, services et initiatives qui encouragent une intégration positive tout en préservant les liens sociaux et culturels."
+    feature1: "Lien humain"
+    feature2: "Croissance continue"
+    feature3: "Soutien et assistance"
+    read_more: "En savoir plus sur l'association"
+  goals:
+    subheading: "Nos objectifs"
+    heading: "Sur quoi travaillons-nous ?"
+    item1_title: "Renforcer les liens"
+    item1_text: "Construire un réseau de communication solide entre les résidents soudanais à Rennes."
+    item2_title: "Partager les expériences"
+    item2_text: "Créer des occasions d'échange de connaissances et d'expériences dans plusieurs domaines."
+    item3_title: "Servir la communauté"
+    item3_text: "Lancer des initiatives concrètes au bénéfice des familles et des individus à Rennes."
+    item4_title: "Valoriser les jeunes"
+    item4_text: "Encourager les jeunes talents à participer aux activités et projets communautaires."
+    item5_title: "Renforcer la présence"
+    item5_text: "Mettre en valeur la culture soudanaise et la participation positive dans la société locale."
+    item6_title: "Construire des partenariats"
+    item6_text: "Ouvrir la coopération avec des institutions et organisations partageant nos valeurs."
+  reviews:
+    subheading: "Avis des membres"
+    heading: "Que disent les membres ?"
+    r1_name: "Membre de l'association"
+    r1_text: "L'association a rapproché les Soudanais à Rennes et a créé un bel espace de rencontre et de coopération."
+    r2_name: "Étudiant soudanais"
+    r2_text: "L'association m'a aidé à me connecter à la communauté et à ressentir un sentiment d'appartenance très tôt."
+    r3_name: "Participant aux activités"
+    r3_text: "Ce qui se distingue le plus, c'est l'organisation, l'esprit d'initiative et l'engagement envers toute la communauté."
+  contact_preview:
+    subheading: "Contactez-nous"
+    heading: "Rejoindre l'Association Soudanaise de Rennes"
+    lead_title: "Nous sommes à votre service"
+    lead_text: "Pour adhérer à l'association, poser des questions sur les activités et programmes, ou coordonner des initiatives, vous pouvez nous contacter directement par les moyens suivants ou utiliser le formulaire de contact."
+    phone_title: "Téléphone"
+    phone_value: "+33 00 00 00 00 00"
+    email_title: "E-mail"
+    email_value: "info@sudanrennes.org"
+    location_title: "Lieu"
+    location_value: "Rennes, France"
+    form_cta: "Envoyer un message via le formulaire"
 
 about:
   title: "À propos"
@@ -100,6 +181,7 @@ members:
 
 search:
   title: "Recherche"
+  placeholder: "Rechercher dans les actualités..."
   text: "Les résultats de recherche apparaîtront ici."
 
 test:

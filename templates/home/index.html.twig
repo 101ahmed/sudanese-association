@@ -1,81 +1,127 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}الرئيسية{% endblock %}
+{% block title %}{{ 'nav.home'|trans }}{% endblock %}
 
 {% block body %}
 
-    <!-- HERO -->
-    <section class="bbc-hero bg-success text-white text-center p-5">
-        <div class="container">
-            <h1 class="display-4">{{ 'home.hero.title'|trans }}</h1>
-            <p class="lead mt-3">{{ 'home.hero.subtitle'|trans }}</p>
+    <section class="site-hero" id="home">
+        <div class="hero-copy">
+            <span class="hero-tag">{{ 'home.hero.kicker'|trans }}</span>
+            <h1>{{ 'home.hero.title'|trans }}</h1>
+            <p>{{ 'home.hero.subtitle'|trans }}</p>
+            <div class="hero-actions">
+                <a href="{{ path('about') }}" class="site-btn">{{ 'about.title'|trans }}</a>
+                <a href="{{ path('contact') }}" class="site-btn site-btn-secondary">{{ 'contact.title'|trans }}</a>
+            </div>
+        </div>
+
+        <div class="hero-panel">
+            <div class="hero-stat">
+                <strong>{{ studentsCount }}</strong>
+                <span>{{ 'home.stats_students'|trans }} — {{ 'home.hero.stat_community_desc'|trans }}</span>
+            </div>
+            <div class="hero-stat">
+                <strong>{{ eventsCount }}</strong>
+                <span>{{ 'home.stats_events'|trans }} — {{ 'home.hero.stat_programs_desc'|trans }}</span>
+            </div>
+            <div class="hero-stat">
+                <strong>{{ newsCount }}</strong>
+                <span>{{ 'home.stats_news'|trans }} — {{ 'home.hero.stat_news_desc'|trans }}</span>
+            </div>
         </div>
     </section>
 
-    <!-- ABOUT -->
-{#    <section class="container mt-5 text-center">#}
-{#        <h2>من نحن</h2>#}
-{#        <p class="lead">#}
-{#            دعم التعليم والأنشطة الثقافية والاجتماعية للجالية السودانية#}
-{#        </p>#}
-{#    </section>#}
+    <section class="site-landing-section" id="programs" aria-labelledby="programs-heading">
+        <span class="site-section-kicker" id="programs-kicker">{{ 'home.programs.subheading'|trans }}</span>
+        <h2 class="site-section-title" id="programs-heading">{{ 'home.programs.heading'|trans }}</h2>
 
-    <!-- MAIN SECTIONS -->
-    <section class="container mt-5 bbc-quick">
-{#        <h2 class="text-center mb-5">أقسام الموقع</h2>#}
-        <h2 class="text-center mb-5">{{ 'home.sections'|trans }}</h2>
+        <div class="site-card-grid">
+            {% for i in 1..6 %}
+                <article class="site-info-card">
+                    <span class="site-card-badge">0{{ i }}</span>
+                    <h4>{{ ('home.programs.item' ~ i ~ '_title')|trans }}</h4>
+                    <p>{{ ('home.programs.item' ~ i ~ '_text')|trans }}</p>
+                </article>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="site-landing-section site-landing-muted" id="site-sections">
+        <h2 class="text-center mb-4">{{ 'home.sections'|trans }}</h2>
 
         <div class="row text-center g-4">
             <div class="col-md-3">
                 <a href="{{ path('committee_academic') }}" class="bbc-card-link">
-                <div class="card shadow-sm bbc-info-card h-100">
-                    <div class="card-body">
-                        <h5>{{ 'nav.committee_academic'|trans }}</h5>
-                        <p class="mb-0">{{ 'home.stats_students'|trans }}: {{ studentsCount }}</p>
+                    <div class="card shadow-sm bbc-info-card h-100">
+                        <div class="card-body">
+                            <h5>{{ 'nav.committee_academic'|trans }}</h5>
+                            <p class="mb-0">{{ 'home.stats_students'|trans }}: {{ studentsCount }}</p>
+                        </div>
                     </div>
-                </div>
                 </a>
             </div>
 
             <div class="col-md-3">
                 <a href="{{ path('committee_statistics') }}" class="bbc-card-link">
-                <div class="card shadow-sm bbc-info-card h-100">
-                    <div class="card-body">
-                        <h5>{{ 'nav.committee_statistics'|trans }}</h5>
-                        <p class="mb-0">{{ 'home.stats_attendance'|trans }}: {{ attendanceCount }}</p>
+                    <div class="card shadow-sm bbc-info-card h-100">
+                        <div class="card-body">
+                            <h5>{{ 'nav.committee_statistics'|trans }}</h5>
+                            <p class="mb-0">{{ 'home.stats_attendance'|trans }}: {{ attendanceCount }}</p>
+                        </div>
                     </div>
-                </div>
                 </a>
             </div>
 
             <div class="col-md-3">
                 <a href="{{ path('committee_events') }}" class="bbc-card-link">
-                <div class="card shadow-sm bbc-info-card h-100">
-                    <div class="card-body">
-                        <h5>{{ 'nav.events'|trans }}</h5>
-                        <p class="mb-0">{{ 'home.stats_events'|trans }}: {{ eventsCount }}</p>
+                    <div class="card shadow-sm bbc-info-card h-100">
+                        <div class="card-body">
+                            <h5>{{ 'nav.events'|trans }}</h5>
+                            <p class="mb-0">{{ 'home.stats_events'|trans }}: {{ eventsCount }}</p>
+                        </div>
                     </div>
-                </div>
                 </a>
             </div>
 
             <div class="col-md-3">
                 <a href="{{ path('public_news_list') }}" class="bbc-card-link">
-                <div class="card shadow-sm bbc-info-card h-100">
-                    <div class="card-body">
-                        <h5>{{ 'nav.news'|trans }}</h5>
-                        <p class="mb-0">{{ 'home.stats_news'|trans }}: {{ (featured ? 1 : 0) + (news|length) }}</p>
+                    <div class="card shadow-sm bbc-info-card h-100">
+                        <div class="card-body">
+                            <h5>{{ 'nav.news'|trans }}</h5>
+                            <p class="mb-0">{{ 'home.stats_news'|trans }}: {{ (featured ? 1 : 0) + (news|length) }}</p>
+                        </div>
                     </div>
-                </div>
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- STATISTICS -->
-    <section class="bg-light mt-5 p-5 text-center">
-        {% set newsTotal = (featured ? 1 : 0) + (news|length) %}
-        <h2 class="mb-5">{{ 'home.stats_title'|trans }}</h2>
+    <section class="site-landing-section" id="about" aria-labelledby="about-heading">
+        <div class="site-split-card">
+            <div class="site-split-panel site-accent-panel">
+                <span class="site-card-badge">SR</span>
+                <h2>{{ 'home.about_split.card_title'|trans }}</h2>
+                <p>{{ 'home.about_split.card_text'|trans }}</p>
+            </div>
+
+            <div class="site-split-panel">
+                <span class="site-section-kicker">{{ 'home.about_split.subheading'|trans }}</span>
+                <h2 class="site-section-title" id="about-heading">{{ 'home.about_split.heading'|trans }}</h2>
+                <p>{{ 'home.about_split.text1'|trans }}</p>
+                <p>{{ 'home.about_split.text2'|trans }}</p>
+                <div class="site-mini-list">
+                    <span>{{ 'home.about_split.feature1'|trans }}</span>
+                    <span>{{ 'home.about_split.feature2'|trans }}</span>
+                    <span>{{ 'home.about_split.feature3'|trans }}</span>
+                </div>
+                <a href="{{ path('about') }}" class="site-read-more">{{ 'home.about_split.read_more'|trans }} →</a>
+            </div>
+        </div>
+    </section>
+
+    {% set newsTotal = (featured ? 1 : 0) + (news|length) %}
+    <section class="site-landing-section site-landing-muted text-center" id="stats" aria-labelledby="stats-heading">
+        <h2 class="mb-4" id="stats-heading">{{ 'home.stats_title'|trans }}</h2>
 
         <div class="row g-4 justify-content-center">
             <div class="col-12 col-md-3">
@@ -108,8 +154,45 @@
         </div>
     </section>
 
-    <!-- 🔥 NEWS (BBC Grid) -->
-    <section class="container mt-5 bbc-news">
+    <section class="site-landing-section" id="goals" aria-labelledby="goals-heading">
+        <span class="site-section-kicker">{{ 'home.goals.subheading'|trans }}</span>
+        <h2 class="site-section-title" id="goals-heading">{{ 'home.goals.heading'|trans }}</h2>
+
+        <div class="site-card-grid">
+            {% for i in 1..6 %}
+                <article class="site-info-card">
+                    <span class="site-card-badge">0{{ i }}</span>
+                    <h4>{{ ('home.goals.item' ~ i ~ '_title')|trans }}</h4>
+                    <p>{{ ('home.goals.item' ~ i ~ '_text')|trans }}</p>
+                </article>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="site-landing-section site-landing-muted" id="reviews" aria-labelledby="reviews-heading">
+        <span class="site-section-kicker">{{ 'home.reviews.subheading'|trans }}</span>
+        <h2 class="site-section-title" id="reviews-heading">{{ 'home.reviews.heading'|trans }}</h2>
+
+        <div class="site-card-grid site-reviews-grid">
+            <article class="site-review-card">
+                <div class="site-rating" aria-hidden="true">★★★★★</div>
+                <h4>{{ 'home.reviews.r1_name'|trans }}</h4>
+                <p>{{ 'home.reviews.r1_text'|trans }}</p>
+            </article>
+            <article class="site-review-card">
+                <div class="site-rating" aria-hidden="true">★★★★★</div>
+                <h4>{{ 'home.reviews.r2_name'|trans }}</h4>
+                <p>{{ 'home.reviews.r2_text'|trans }}</p>
+            </article>
+            <article class="site-review-card">
+                <div class="site-rating" aria-hidden="true">★★★★☆</div>
+                <h4>{{ 'home.reviews.r3_name'|trans }}</h4>
+                <p>{{ 'home.reviews.r3_text'|trans }}</p>
+            </article>
+        </div>
+    </section>
+
+    <section class="container mt-5 bbc-news" id="news">
 
         <div class="bbc-news-header d-flex justify-content-between align-items-center mb-4">
             <div class="bbc-news-title-wrap">
@@ -234,9 +317,8 @@
 
     </section>
 
-    <!-- GALLERY -->
-    <section class="container mt-5">
-        <h2 class="text-center mb-5">{{ 'home.gallery_title'|trans }}</h2>
+    <section class="site-landing-section" id="gallery">
+        <h2 class="text-center mb-4">{{ 'home.gallery_title'|trans }}</h2>
 
         {% if galleryImages is defined and galleryImages|length > 0 %}
             <div class="row g-3 bbc-gallery">
@@ -244,7 +326,7 @@
                     <div class="col-md-3">
                         <img src="/uploads/{{ img }}"
                              class="img-fluid rounded bbc-gallery-img"
-                             alt="صورة">
+                             alt="">
                     </div>
                 {% endfor %}
             </div>
@@ -256,12 +338,35 @@
         {% endif %}
     </section>
 
-    <!-- CONTACT -->
-    <section class="bg-light mt-5 p-5 bbc-contact">
-        <div class="container text-center">
-            <h2 class="mb-3">{{ 'home.contact_title'|trans }}</h2>
-            <p class="text-muted mb-4">{{ 'home.contact_text'|trans }}</p>
-            <a href="{{ path('contact') }}" class="btn btn-success btn-lg">{{ 'contact.send'|trans }}</a>
+    <section class="site-landing-section site-landing-muted" id="contact" aria-labelledby="contact-heading">
+        <span class="site-section-kicker">{{ 'home.contact_preview.subheading'|trans }}</span>
+        <h2 class="site-section-title" id="contact-heading">{{ 'home.contact_preview.heading'|trans }}</h2>
+
+        <div class="site-contact-preview">
+            <div class="site-contact-info-panel">
+                <span class="site-contact-chip">{{ 'home.contact_preview.lead_title'|trans }}</span>
+                <p class="site-contact-lead">{{ 'home.contact_preview.lead_text'|trans }}</p>
+
+                <div class="site-contact-cards">
+                    <article class="site-contact-mini">
+                        <span class="label">{{ 'home.contact_preview.phone_title'|trans }}</span>
+                        <a href="tel:+330000000000" class="value">{{ 'home.contact_preview.phone_value'|trans }}</a>
+                    </article>
+                    <article class="site-contact-mini">
+                        <span class="label">{{ 'home.contact_preview.email_title'|trans }}</span>
+                        <a href="mailto:info@sudanrennes.org" class="value">{{ 'home.contact_preview.email_value'|trans }}</a>
+                    </article>
+                    <article class="site-contact-mini">
+                        <span class="label">{{ 'home.contact_preview.location_title'|trans }}</span>
+                        <span class="value">{{ 'home.contact_preview.location_value'|trans }}</span>
+                    </article>
+                </div>
+            </div>
+
+            <div class="site-contact-cta-panel">
+                <p>{{ 'home.contact_text'|trans }}</p>
+                <a href="{{ path('contact') }}" class="site-btn">{{ 'home.contact_preview.form_cta'|trans }}</a>
+            </div>
         </div>
     </section>
 

@@ -28,3 +28,8 @@ RewriteRule ^ %{ENV:BASE}/index.php [L]
 
 # When mod_rewrite is not available
 RedirectMatch 307 ^/$ /index.php/
+
+# Apache 2.4 + استضافة مشتركة (مثل IONOS): تفادي 403 إن كان السيرفر يفرض رفضاً افتراضياً
+<IfModule mod_authz_core.c>
+    Require all granted
+</IfModule>

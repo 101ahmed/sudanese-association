@@ -1,5 +1,8 @@
 nav:
   home: "Home"
+  programs: "Programs"
+  goals: "Goals"
+  reviews: "Member reviews"
   about: "About us"
   news: "News"
   contact: "Contact"
@@ -22,11 +25,22 @@ nav:
 app:
   title: "Sudanese Association Rennes"
 
+common:
+  search: "Search"
+  menu: "Menu"
+  close: "Close"
+
 seo:
   default_description: "Sudanese community association in Rennes — news, events, education, and social activities for members."
 
 footer:
   title: "Sudanese Association Rennes"
+  location: "Rennes, France"
+  quick_links: "Quick links"
+  contact_heading: "Contact"
+  contact_note: "Available for coordination and community initiatives"
+  social_heading: "Follow us"
+  credit_prefix: "All rights reserved"
 
 home:
   sections: "Site sections"
@@ -35,9 +49,14 @@ home:
   contact_text: "Send us a message using the contact form. We will review your request and reply soon."
   gallery_title: "Photo gallery"
   hero:
+    kicker: "A supportive Sudanese community"
     title: "Sudanese Community Association - Rennes"
     subtitle: "A platform to serve community members and organize education, cultural and social activities."
+    stat_community_desc: "Families, students, and guardians together"
+    stat_programs_desc: "Events and activities year-round"
+    stat_news_desc: "Updates from the association"
   stats_students: "Students"
+  stats_attendance: "Attendance"
   stats_students_singular: "Student"
   stats_guardians_singular: "Tutor/Coordinator"
   stats_attendance_singular: "Attendance"
@@ -53,6 +72,68 @@ home:
   news_read_more: "Read more"
   news_none: "No news available"
   gallery_none: "No uploaded photos available."
+  programs:
+    subheading: "Our programs"
+    heading: "Main areas of work"
+    item1_title: "Social connection"
+    item1_text: "Organizing gatherings that bring Sudanese community members in Rennes together and strengthen solidarity."
+    item2_title: "Student support"
+    item2_text: "Helping new students settle in and exchange experience with other community members."
+    item3_title: "Cultural activities"
+    item3_text: "Presenting Sudanese culture to the local community through cultural and social events."
+    item4_title: "Community support"
+    item4_text: "Launching initiatives that support families and individuals when needed in Rennes."
+    item5_title: "Youth initiatives"
+    item5_text: "Encouraging young people to propose ideas and projects with positive impact."
+    item6_title: "Partnerships"
+    item6_text: "Building cooperation with local associations and institutions that align with our goals."
+  about_split:
+    subheading: "About us"
+    heading: "About the Sudanese Association in Rennes"
+    card_title: "Sudanese identity and collective spirit"
+    card_text: "The association is a community platform that brings Sudanese people in Rennes together under one umbrella that preserves identity and supports cooperation."
+    text1: "We aim to build a cohesive Sudanese community in Rennes based on collaboration, mutual support, and shared experience."
+    text2: "We work on activities, services, and initiatives that encourage positive integration while preserving social and cultural ties."
+    feature1: "Human connection"
+    feature2: "Continuous growth"
+    feature3: "Support and assistance"
+    read_more: "More about the association"
+  goals:
+    subheading: "Our goals"
+    heading: "What do we work on?"
+    item1_title: "Strengthening bonds"
+    item1_text: "Building a strong communication network among Sudanese residents in Rennes."
+    item2_title: "Sharing experience"
+    item2_text: "Creating opportunities to exchange knowledge and experience across different fields."
+    item3_title: "Serving the community"
+    item3_text: "Launching practical initiatives that benefit families and individuals in Rennes."
+    item4_title: "Empowering youth"
+    item4_text: "Encouraging young talents to contribute to social activities and projects."
+    item5_title: "Strengthening presence"
+    item5_text: "Highlighting Sudanese culture and positive participation in local society."
+    item6_title: "Building partnerships"
+    item6_text: "Opening cooperation with institutions and organizations that share our values."
+  reviews:
+    subheading: "Member reviews"
+    heading: "What do members say?"
+    r1_name: "Association member"
+    r1_text: "The association brought Sudanese people in Rennes closer and created a warm space for connection and cooperation."
+    r2_name: "Sudanese student"
+    r2_text: "The association helped me connect with the community and feel a sense of belonging early on."
+    r3_name: "Event participant"
+    r3_text: "What stands out most is the organization, initiative, and commitment to serving everyone in the community."
+  contact_preview:
+    subheading: "Contact us"
+    heading: "Join the Sudanese Association in Rennes"
+    lead_title: "We are here to help"
+    lead_text: "For membership, questions about activities and programs, or coordination for initiatives, you can contact us directly through the following channels or use the contact form."
+    phone_title: "Phone"
+    phone_value: "+33 00 00 00 00 00"
+    email_title: "Email"
+    email_value: "info@sudanrennes.org"
+    location_title: "Location"
+    location_value: "Rennes, France"
+    form_cta: "Send a message via the form"
 
 about:
   title: "About us"
@@ -100,6 +181,7 @@ members:
 
 search:
   title: "Search"
+  placeholder: "Search news..."
   text: "Search results will appear here."
 
 test:

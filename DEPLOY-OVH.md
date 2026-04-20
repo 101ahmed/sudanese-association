@@ -18,9 +18,7 @@
 7. **أوامر (SSH)** إن فعّلت SSH على الاستضافة، من **جذر المشروع** (ليس من `public/`):
    ```bash
    composer install --no-dev --optimize-autoloader
-   php bin/console doctrine:schema:update --force
-   php bin/console cache:clear --env=prod --no-debug
-   php bin/console assets:install public --env=prod
+   composer run prod:post-install
    ```
 8. **SSL:** في المدير، فعّل شهادة مجانية (**Let’s Encrypt**) للنطاق المرتبط بالاستضافة.
 9. **اختبار:** افتح الموقع ثم `/news` و`/admin`.

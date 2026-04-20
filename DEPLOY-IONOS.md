@@ -18,9 +18,7 @@
 7. **أوامر (SSH إن وُجد):** من جذر المشروع:
    ```bash
    composer install --no-dev --optimize-autoloader
-   php bin/console doctrine:schema:update --force
-   php bin/console cache:clear --env=prod --no-debug
-   php bin/console assets:install public --env=prod
+   composer run prod:post-install
    ```
 8. **SSL:** فعّل **Let’s Encrypt** للنطاق من لوحة IONOS إن كان متاحاً.
 9. **اختبار:** افتح `https://sd-rennes.fr` ثم `/news` و`/admin`.
@@ -123,9 +121,7 @@
 2. عدّل **`APP_SECRET`**, **`DATABASE_URL`**, **`DEFAULT_URI=https://نطاقك`**.
 3. إن أمكن عبر SSH:
    ```bash
-   php bin/console cache:clear --env=prod --no-debug
-   php bin/console assets:install public --env=prod
-   php bin/console doctrine:schema:update --force
+   composer run prod:post-install
    ```
 4. تأكد أن **`public/.htaccess`** موجود (Apache + `mod_rewrite`).
 
@@ -165,9 +161,7 @@
   composer install --no-dev --optimize-autoloader
   cp .env.prod.local.dist .env.prod.local
   # عدّل .env.prod.local
-  php bin/console doctrine:schema:update --force
-  php bin/console cache:clear --env=prod --no-debug
-  php bin/console assets:install public --env=prod
+  composer run prod:post-install
   ```
 
 ### 5) إعداد Nginx (فكرة)

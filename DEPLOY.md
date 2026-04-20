@@ -29,6 +29,8 @@
 
 ## 1) إعداد الملفات البيئية
 
+**محلياً للتطوير:** انسخ **`.env.local.dist`** إلى **`.env.local`** وعدّل `DATABASE_URL` إن اختلفت قاعدة WAMP عن الافتراضي في `.env`.
+
 على الخادم، أنشئ ملف **`.env.prod.local`** انطلاقاً من **`.env.prod.local.dist`** (`cp .env.prod.local.dist .env.prod.local`) وضع فيه على الأقل:
 
 | المتغير | الوصف |
@@ -51,10 +53,10 @@ composer install --no-dev --optimize-autoloader
 بعد ضبط `DATABASE_URL`:
 
 ```bash
-php bin/console doctrine:schema:update --force
+php bin/console doctrine:migrations:migrate --no-interaction --env=prod
 ```
 
-أو استخدم migrations إذا أضفتها لاحقاً: `php bin/console doctrine:migrations:migrate --no-interaction`
+(يُفضّل الهجرات الموجودة في `migrations/` بدل `doctrine:schema:update` على الإنتاج.)
 
 ## 4) التخزين المؤقت والأصول
 
@@ -99,8 +101,7 @@ chmod -R ug+rwX var/
 1. PHP 8.2+، Composer، قاعدة بيانات، خادم ويب بجذر **`public/`**.  
 2. إنشاء **`.env.prod.local`** يحتوي **`APP_SECRET`**, **`DATABASE_URL`**, **`DEFAULT_URI`**.  
 3. `composer install --no-dev --optimize-autoloader`  
-4. `php bin/console doctrine:schema:update --force` (أو migrations إن استخدمتها)  
-5. `php bin/console cache:clear --env=prod --no-debug` و`assets:install`  
+4. `composer run prod:post-install` (هجرات + كاش + أصول)، أو يدوياً: `doctrine:migrations:migrate` ثم `cache:clear` ثم `assets:install`  
 6. **`var/`** قابل للكتابة؛ **`public/uploads/`** إن رفعتم ملفات من الموقع.
 
 **English (short):** Same steps — docroot `public/`, `.env.prod.local`, composer prod, schema/cache, writable `var/`.

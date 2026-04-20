@@ -35,4 +35,28 @@ class Guardian
 
     public function getPhone(): ?string { return $this->phone; }
     public function setPhone(string $phone): static { $this->phone = $phone; return $this; }
+
+    public function getStudents(): Collection
+    {
+        return $this->students;
+    }
+
+    public function addStudent(Student $student): static
+    {
+        if (!$this->students->contains($student)) {
+            $this->students->add($student);
+            $student->setGuardian($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStudent(Student $student): static
+    {
+        if ($this->students->removeElement($student) && $student->getGuardian() === $this) {
+            $student->setGuardian(null);
+        }
+
+        return $this;
+    }
 }

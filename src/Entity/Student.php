@@ -32,7 +32,7 @@ class Student
         $this->createdAt = $createdAt;
     }
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(inversedBy: 'students')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Guardian $guardian = null;
 

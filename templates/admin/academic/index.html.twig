@@ -1,0 +1,129 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <div class="container mt-5">
+
+        <h2 class="mb-4 text-center">📚 الأمانة الأكاديمية</h2>
+
+        <div class="mb-4 text-center">
+            <a href="/admin/academic" class="btn btn-dark mx-1">📚 الأمانة الأكاديمية</a>
+            <a href="/admin/students" class="btn btn-primary mx-1">👨‍🎓 الطلاب</a>
+            <a href="/admin/guardians" class="btn btn-info mx-1">👨‍👩‍👧 أولياء الأمور</a>
+            <a href="/admin/attendance/create" class="btn btn-success mx-1">📅 الحضور</a>
+        </div>
+
+        <div class="row g-4 mb-4">
+            <div class="col-md-3">
+                <div class="card text-center shadow p-4">
+                    <h5>عدد الطلاب</h5>
+                    <h2 class="text-primary">{{ studentsCount }}</h2>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card text-center shadow p-4">
+                    <h5>عدد أولياء الأمور</h5>
+                    <h2 class="text-success">{{ guardiansCount }}</h2>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card text-center shadow p-4">
+                    <h5>عدد الحضور اليوم</h5>
+                    <h2 class="text-warning">{{ attendanceCount }}</h2>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card text-center shadow p-4">
+                    <h5>نسبة الحضور</h5>
+                    <h2 class="text-danger">{{ attendanceRate }}%</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="card p-3 shadow mb-5">
+            <h4>آخر الطلاب</h4>
+
+            <table class="table table-bordered text-center">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>الاسم</th>
+                    <th>المستوى</th>
+                    <th>ولي الأمر</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for student in students %}
+                    <tr>
+                        <td>{{ student.id }}</td>
+                        <td>{{ student.name }}</td>
+                        <td>{{ student.level }}</td>
+                        <td>{{ student.guardian.name }}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4">لا يوجد طلاب</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="mt-5">
+            <canvas id="myChart"></canvas>
+        </div>
+
+        <div class="mt-5">
+            <canvas id="attendanceChart"></canvas>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        new Chart(document.getElementById('myChart'), {
+            type: 'bar',
+            data: {
+                labels: ['الطلاب', 'أولياء الأمور', 'الحضور'],
+                datasets: [{
+                    label: 'إحصائيات النظام',
+                    data: [
+                        {{ chartData.students }},
+                        {{ chartData.guardians }},
+                        {{ chartData.attendance }}
+                    ],
+                    backgroundColor: [
+                        'rgba(54, 162, 235, 0.7)',
+                        'rgba(75, 192, 192, 0.7)',
+                        'rgba(255, 206, 86, 0.7)'
+                    ]
+                }]
+            }
+        });
+
+        const attendanceRateValue = {{ attendanceRate }};
+        const absenceRateValue = Math.max(0, 100 - attendanceRateValue);
+
+        new Chart(document.getElementById('attendanceChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['حضور', 'غياب'],
+                datasets: [{
+                    data: [
+                        attendanceRateValue,
+                        absenceRateValue
+                    ],
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.8)',
+                        'rgba(255, 99, 132, 0.8)'
+                    ]
+                }]
+            }
+        });
+    </script>
+
+{% endblock %}

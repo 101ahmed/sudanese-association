@@ -8,6 +8,16 @@ framework:
     #esi: true
     #fragments: true
 
+when@prod:
+    framework:
+        # Reverse proxy (typical on shared hosting): correct scheme/host behind HTTPS.
+        trusted_proxies: 'PRIVATE_SUBNETS'
+        trusted_headers:
+            - 'x-forwarded-for'
+            - 'x-forwarded-proto'
+            - 'x-forwarded-port'
+            - 'x-forwarded-host'
+
 when@test:
     framework:
         test: true

@@ -1,149 +1,192 @@
 <!DOCTYPE html>
-<html lang="ar">
+{% trans_default_domain 'messages' %}
+{% set current_route = app.request.attributes.get('_route') %}
+<html lang="{{ app.request.locale }}" dir="{{ app.request.locale == 'ar' ? 'rtl' : 'ltr' }}">
 <head>
     <meta charset="UTF-8">
-    <title>رابطة الجالية السودانية في Rennes</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %}{% if block('title')|trim %} | {% endif %}{{ 'app.title'|trans }}</title>
+    <meta name="description" content="{% block meta_description %}{{ 'seo.default_description'|trans }}{% endblock %}">
+    <meta name="robots" content="{% block meta_robots %}index, follow{% endblock %}">
+    <link rel="canonical" href="{% block canonical_url %}{{ app.request.schemeAndHttpHost ~ app.request.pathInfo }}{% endblock %}">
 
+    <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+    <meta property="og:site_name" content="{{ 'app.title'|trans }}">
+    <meta property="og:locale" content="{{ app.request.locale == 'ar' ? 'ar_AR' : (app.request.locale == 'fr' ? 'fr_FR' : 'en_US') }}">
+    <meta property="og:title" content="{{ block('title')|striptags|trim }}{% if block('title')|trim %} | {% endif %}{{ 'app.title'|trans }}">
+    <meta property="og:description" content="{{ block('meta_description')|striptags|trim }}">
+    <meta property="og:url" content="{% block og_url %}{{ app.request.schemeAndHttpHost ~ app.request.pathInfo }}{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{{ absolute_url(asset('image/photo01.jpg')) }}{% endblock %}">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ block('title')|striptags|trim }}{% if block('title')|trim %} | {% endif %}{{ 'app.title'|trans }}">
+    <meta name="twitter:description" content="{{ block('meta_description')|striptags|trim }}">
+
+    {% block head_json_ld %}
+    <script type="application/ld+json">{{ {
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        'name': 'app.title'|trans,
+        'url': app.request.schemeAndHttpHost
+    }|json_encode(constant('JSON_UNESCAPED_UNICODE'))|raw }}</script>
+    {% endblock %}
+
+    {% block head_extra %}{% endblock %}
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/site-layout.css') }}">
 </head>
 
-<body>
+<body class="app-body site-body d-flex flex-column min-vh-100">
 
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<header class="site-header">
+    <a href="{{ path('home') }}" class="site-logo">
+        <span class="site-logo-mark" aria-hidden="true">
+            <img src="{{ asset('image/photo01.jpg') }}" alt="" class="site-logo-image" width="64" height="64">
+        </span>
+        <span class="site-logo-text">
+            <span>{{ 'app.title'|trans }}</span>
+            <small>{{ 'home.hero.subtitle'|trans }}</small>
+        </span>
+    </a>
 
-    <div class="container">
+    <nav class="site-nav" id="main-nav">
+        <a href="{{ path('home') }}" class="{{ current_route == 'home' ? 'active' : '' }}">{{ 'nav.home'|trans }}</a>
+        <a href="{{ path('home') }}#programs">{{ 'nav.programs'|trans }}</a>
+        <a href="{{ path('about') }}" class="{{ current_route == 'about' ? 'active' : '' }}">{{ 'nav.about'|trans }}</a>
+        <a href="{{ path('home') }}#goals">{{ 'nav.goals'|trans }}</a>
+        <a href="{{ path('home') }}#reviews">{{ 'nav.reviews'|trans }}</a>
 
-        <a class="navbar-brand d-flex align-items-center" href="/">
-
-            <img src="{{ asset('image/photo01.jpg') }}"
-                 alt="Logo"
-                 width="50"
-                 height="50"
-                 class="me-2">
-
-            <span>
-</span>
-
-        </a>
-
-        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="menu">
-
-            <ul class="navbar-nav ms-auto">
-
-                <li class="nav-item">
-                    <a class="nav-link" href="/">الرئيسية</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="/about">من نحن</a>
-                </li>
-
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                         الأمانات
-                    </a>
-
-                    <ul class="dropdown-menu text-end">
-                        <li>
-                            <a class="dropdown-item" href="/committee/academic">
-                                رئيس الرابطة
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="/committee/academic">
-                                الأمانة العامة
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item" href="/committee/academic">
-                                 الأمانة الأكاديمية
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="/committee/academic">
-                                الأمانة الأجتماعية
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="/committee/academic">
-                                الأمانة الاعلامية
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="/committee/academic">
-                                شئون المرة و الطفل
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="/committee/statistics">
-                                 أمانة الإحصاء
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item" href="/committee/events">
-                                 ألاماتة الخارجية
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item" href="/committee/media">
-                                 أمانة الإعلام
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="dropdown-item" href="/committee/members">
-                                 قسم مجلس الشورة
-                            </a>
-                        </li>
-
-                    </ul>
-
-                </li>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#">الفعاليات</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#">الأخبار</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link" href="#">تواصل</a>
-                </li>
-
-                <li class="nav-item">
-                    <a class="nav-link text-warning" href="/admin">
-                        لوحة التحكم
-                    </a>
-                </li>
-
+        <div class="dropdown site-nav-dropdown">
+            <button type="button"
+                    class="site-nav-dd dropdown-toggle {{ current_route|default('')|slice(0, 9) == 'committee' ? 'active' : '' }}"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                {{ 'nav.committee'|trans }}
+            </button>
+            <ul class="dropdown-menu {{ app.request.locale == 'ar' ? 'text-end' : 'text-start' }}">
+                <li><a class="dropdown-item" href="{{ path('committee_academic') }}">{{ 'nav.committee_chair'|trans }}</a></li>
+                <li><a class="dropdown-item" href="{{ path('committee_academic') }}">{{ 'nav.committee_general'|trans }}</a></li>
+                <li><a class="dropdown-item" href="{{ path('academic_dashboard') }}">{{ 'nav.committee_academic'|trans }}</a></li>
+                <li><a class="dropdown-item" href="{{ path('committee_academic') }}">{{ 'nav.committee_social'|trans }}</a></li>
+                <li><a class="dropdown-item" href="{{ path('committee_academic') }}">{{ 'nav.committee_communication'|trans }}</a></li>
+                <li><a class="dropdown-item" href="{{ path('committee_academic') }}">{{ 'nav.committee_women_children'|trans }}</a></li>
+                <li><a class="dropdown-item" href="{{ path('committee_statistics') }}">{{ 'nav.committee_statistics'|trans }}</a></li>
+                <li><a class="dropdown-item" href="{{ path('committee_events') }}">{{ 'nav.committee_external'|trans }}</a></li>
+                <li><a class="dropdown-item" href="{{ path('committee_media') }}">{{ 'nav.committee_media'|trans }}</a></li>
+                <li><a class="dropdown-item" href="{{ path('committee_members') }}">{{ 'nav.committee_shura'|trans }}</a></li>
+                <li><a class="dropdown-item" href="{{ path('committee_members') }}">{{ 'nav.committee_fathers'|trans }}</a></li>
             </ul>
-
         </div>
 
+        <a href="{{ path('committee_events') }}" class="{{ current_route == 'committee_events' or current_route == 'events_list' ? 'active' : '' }}">{{ 'nav.events'|trans }}</a>
+        <a href="{{ path('public_news_list') }}" class="{{ current_route == 'public_news_list' or current_route == 'public_news_show' ? 'active' : '' }}">{{ 'nav.news'|trans }}</a>
+        <a href="{{ path('contact') }}" class="{{ current_route == 'contact' ? 'active' : '' }}">{{ 'nav.contact'|trans }}</a>
+    </nav>
+
+    <div class="header-tools">
+        <div class="language-switcher">
+            <a href="{{ path('set_locale', {locale: 'ar'}) }}" class="lang-btn {{ app.request.locale == 'ar' ? 'active' : '' }}">AR</a>
+            <a href="{{ path('set_locale', {locale: 'en'}) }}" class="lang-btn {{ app.request.locale == 'en' ? 'active' : '' }}">EN</a>
+            <a href="{{ path('set_locale', {locale: 'fr'}) }}" class="lang-btn {{ app.request.locale == 'fr' ? 'active' : '' }}">FR</a>
+        </div>
+        <button type="button" class="tool-btn" id="search-toggle" aria-expanded="false">{{ 'common.search'|trans }}</button>
+        <button type="button" class="tool-btn menu-btn" id="menu-toggle">{{ 'common.menu'|trans }}</button>
+    </div>
+</header>
+
+<form action="{{ path('public_news_list') }}" method="get" id="site-search-form" class="site-search-overlay" role="search">
+    <input type="search"
+           name="q"
+           id="site-search-box"
+           value="{{ app.request.query.get('q') }}"
+           placeholder="{{ 'search.placeholder'|trans }}"
+           autocomplete="off"
+           aria-label="{{ 'search.placeholder'|trans }}">
+    <button type="button" id="site-search-close" class="site-search-close-btn">{{ 'common.close'|trans }}</button>
+</form>
+
+<main class="flex-grow-1">
+{% block body %}{% endblock %}
+</main>
+
+<footer class="site-footer">
+    <div class="footer-grid">
+        <div class="footer-brand">
+            <div class="footer-brand-mark" aria-hidden="true">
+                <span class="site-logo-mark">
+                    <img src="{{ asset('image/photo01.jpg') }}" alt="" class="site-logo-image" width="72" height="72">
+                </span>
+            </div>
+            <div class="footer-brand-copy">
+                <h4>{{ 'app.title'|trans }}</h4>
+                <p class="text-muted small mb-1">{{ 'home.hero.subtitle'|trans }}</p>
+                <p class="text-muted small mb-0">{{ 'footer.location'|trans }}</p>
+            </div>
+        </div>
+        <div>
+            <h4>{{ 'footer.quick_links'|trans }}</h4>
+            <a href="{{ path('home') }}">{{ 'nav.home'|trans }}</a>
+            <a href="{{ path('home') }}#programs">{{ 'nav.programs'|trans }}</a>
+            <a href="{{ path('about') }}">{{ 'nav.about'|trans }}</a>
+            <a href="{{ path('home') }}#goals">{{ 'nav.goals'|trans }}</a>
+            <a href="{{ path('home') }}#reviews">{{ 'nav.reviews'|trans }}</a>
+            <a href="{{ path('committee_events') }}">{{ 'nav.events'|trans }}</a>
+            <a href="{{ path('public_news_list') }}">{{ 'nav.news'|trans }}</a>
+            <a href="{{ path('contact') }}">{{ 'nav.contact'|trans }}</a>
+        </div>
+        <div>
+            <h4>{{ 'footer.contact_heading'|trans }}</h4>
+            <p class="text-muted small mb-0">{{ 'footer.contact_note'|trans }}</p>
+        </div>
+        <div>
+            <h4>{{ 'footer.social_heading'|trans }}</h4>
+            <div class="social-links">
+                <a href="#" class="social-link" aria-label="Facebook">
+                    <span class="social-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" focusable="false">
+                            <path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.6 1.6-1.6h1.7V4.8c-.3 0-1.3-.1-2.4-.1-2.4 0-4.1 1.4-4.1 4.1V11H8v3h2.5v8h3Z"/>
+                        </svg>
+                    </span>
+                    <span>Facebook</span>
+                </a>
+                <a href="#" class="social-link" aria-label="Instagram">
+                    <span class="social-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" focusable="false">
+                            <path d="M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4Zm0 2.2A1.8 1.8 0 0 0 5.2 7v10c0 1 .8 1.8 1.8 1.8h10c1 0 1.8-.8 1.8-1.8V7c0-1-.8-1.8-1.8-1.8H7Zm10.2 1.5a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2ZM12 7.8A4.2 4.2 0 1 1 7.8 12 4.2 4.2 0 0 1 12 7.8Zm0 2.2A2 2 0 1 0 14 12a2 2 0 0 0-2-2Z"/>
+                        </svg>
+                    </span>
+                    <span>Instagram</span>
+                </a>
+                <a href="#" class="social-link" aria-label="LinkedIn">
+                    <span class="social-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" focusable="false">
+                            <path d="M6.4 8.7A1.7 1.7 0 1 1 6.4 5.3a1.7 1.7 0 0 1 0 3.4ZM5 19V10h2.8v9H5Zm4.5 0V10h2.7v1.3h.1c.4-.7 1.3-1.6 2.8-1.6 3 0 3.6 2 3.6 4.6V19h-2.8v-4.1c0-1 0-2.3-1.4-2.3s-1.6 1.1-1.6 2.2V19H9.5Z"/>
+                        </svg>
+                    </span>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="#" class="social-link" aria-label="YouTube">
+                    <span class="social-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" focusable="false">
+                            <path d="M21.6 8.2a2.9 2.9 0 0 0-2-2C17.8 5.7 12 5.7 12 5.7s-5.8 0-7.6.5a2.9 2.9 0 0 0-2 2A30 30 0 0 0 2 12a30 30 0 0 0 .4 3.8 2.9 2.9 0 0 0 2 2c1.8.5 7.6.5 7.6.5s5.8 0 7.6-.5a2.9 2.9 0 0 0 2-2A30 30 0 0 0 22 12a30 30 0 0 0-.4-3.8ZM10 15.3V8.7L15.5 12 10 15.3Z"/>
+                        </svg>
+                    </span>
+                    <span>YouTube</span>
+                </a>
+            </div>
+        </div>
     </div>
 
-</nav>
-
-
-{% block body %}{% endblock %}
-
-
-<footer class="bg-dark text-white text-center p-4 mt-5">
-
-    Sudanese Association Rennes
-
+    <div class="credit">
+        <span>{{ 'footer.credit_prefix'|trans }}</span>
+        <span>{{ 'app.title'|trans }}</span>
+    </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{{ asset('js/site-header.js') }}"></script>
+{% block scripts %}{% endblock %}
 </body>
 </html>

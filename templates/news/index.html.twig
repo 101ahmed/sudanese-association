@@ -1,45 +1,44 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}{{ 'news.title'|trans }}{% endblock %}
+
 {% block body %}
-
     <div class="container mt-5">
+        <h1 class="mb-4 text-center">📰 {{ 'news.title'|trans }}</h1>
 
-        <h1 class="text-center mb-5">الأخبار</h1>
-
-        <div class="row">
-
-            {% for article in news %}
-
-                <div class="col-md-4">
-
-                    <div class="card mb-4">
-
-                        <img src="{{ article.image }}" class="card-img-top">
+        <div class="row g-4">
+            {% for item in newsList %}
+                <div class="col-md-6 col-lg-4">
+                    <div class="card shadow-sm h-100 border-0 news-list-card">
+                        {% if item.image %}
+                            <img src="{{ asset('uploads/' ~ item.image) }}" class="card-img-top news-list-img" alt="{{ item.title }}">
+                        {% else %}
+                            <img src="https://picsum.photos/600/360" class="card-img-top news-list-img" alt="{{ item.title }}">
+                        {% endif %}
 
                         <div class="card-body">
-
-                            <h5>{{ article.title }}</h5>
-
-                            <p>{{ article.content|slice(0,100) }}...</p>
-
-                            <a href="/admin/news/{{ article.id }}/edit" class="btn btn-warning btn-sm">
-                                تعديل
+                            <h5 class="card-title">{{ item.title }}</h5>
+                            <p class="card-text">
+                                {{ item.content|slice(0, 120) }}...
+                            </p>
+                            <a href="{{ path('public_news_show', {id: item.id}) }}" class="btn btn-primary">
+                                {{ 'news.show_details'|trans }}
                             </a>
-
-                            <a href="/admin/news/{{ article.id }}/delete" class="btn btn-danger btn-sm">
-                                حذف
-                            </a>
-
                         </div>
 
+                        <div class="card-footer text-muted">
+                            {{ item.createdAt ? item.createdAt|date('Y-m-d H:i') : '' }}
+                        </div>
                     </div>
-
                 </div>
-
+            {% else %}
+                <div class="col-12">
+                    <div class="empty-state ui-fade-in">
+                        <div class="empty-state-icon">📰</div>
+                        {{ 'news.no_news'|trans }}
+                    </div>
+                </div>
             {% endfor %}
-
         </div>
-
     </div>
-
 {% endblock %}

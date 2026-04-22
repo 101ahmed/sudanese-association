@@ -1,0 +1,22 @@
+{% extends 'admin_base.html.twig' %}
+
+{% block title %}تعديل خبر{% endblock %}
+
+{% block body %}
+    <h1 class="mb-4">تعديل الخبر</h1>
+
+    {% if news.image %}
+        <div class="mb-3">
+            <img src="{{ asset('uploads/' ~ news.image) }}" alt="{{ news.title }}" width="180">
+        </div>
+    {% endif %}
+
+    {{ form_start(form) }}
+    {{ form_row(form.title) }}
+    {{ form_row(form.content) }}
+    {{ form_row(form.imageFile) }}
+
+    <button class="btn btn-primary">تحديث</button>
+    <a href="{{ path('news_list') }}" class="btn btn-secondary">رجوع</a>
+    {{ form_end(form) }}
+{% endblock %}

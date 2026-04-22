@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'guardian.title'|trans }}{% endblock %}
+
+{% block body %}
+    <div class="container mt-4 page-wrap">
+
+        <h1 class="mb-4">{{ 'guardian.title'|trans }}</h1>
+
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{ path('guardian_create') }}" class="btn btn-primary mb-3">
+                ➕ {{ 'guardian.add'|trans }}
+            </a>
+        {% endif %}
+
+        <div class="page-card p-0 overflow-hidden">
+        <table class="table table-bordered mb-0">
+            <thead>
+            <tr>
+                <th>{{ 'guardian.id'|trans }}</th>
+                <th>{{ 'guardian.name'|trans }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for guardian in guardians %}
+                <tr>
+                    <td>{{ guardian.id }}</td>
+                    <td>{{ guardian.name }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="2" class="text-center">
+                        {{ 'guardian.none'|trans }}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        </div>
+
+    </div>
+{% endblock %}

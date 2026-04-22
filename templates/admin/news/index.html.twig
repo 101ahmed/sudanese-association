@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container mt-5">
+
+        <h2>📰 الأخبار</h2>
+
+        <form method="get" class="mb-3">
+            <input type="text" name="q" class="form-control" placeholder="بحث...">
+        </form>
+
+        <a href="{{ path('news_create') }}" class="btn btn-primary mb-3">➕ إضافة خبر</a>
+
+        {% for item in news %}
+            <div class="card mb-3 p-3 shadow">
+
+                {% if item.image %}
+                    <img src="/uploads/{{ item.image }}" width="100%">
+                {% endif %}
+
+                <h4>
+                    <a href="{{ path('news_show', {id: item.id}) }}">
+                        {{ item.title }}
+                    </a>
+                </h4>
+
+                <p>{{ item.content|slice(0,150) }}...</p>
+
+                <a href="{{ path('news_edit', {id: item.id}) }}" class="btn btn-warning">✏️</a>
+                <a href="{{ path('news_delete', {id: item.id}) }}" class="btn btn-danger">🗑</a>
+
+            </div>
+        {% endfor %}
+
+    </div>
+{% endblock %}

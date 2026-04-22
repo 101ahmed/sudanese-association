@@ -1,0 +1,43 @@
+{% extends '../../../base.html.twig' %}
+
+{% block body %}
+
+    <div class="container mt-5">
+
+        <h2 class="text-center">سجل الحضور</h2>
+
+        <a href="{{ path('attendance_create') }}" class="btn btn-primary mb-3">
+            ➕ تسجيل حضور
+        </a>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>الطالب</th>
+                <th>الحالة</th>
+                <th>التاريخ</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for item in attendance %}
+                <tr>
+                    <td>{{ item.student.name }}</td>
+
+                    <td>
+                        {% if item.status == 'present' %}
+                            <span class="text-success">حاضر</span>
+                        {% else %}
+                            <span class="text-danger">غائب</span>
+                        {% endif %}
+                    </td>
+
+                    <td>{{ student.createdAt|date('Y-m-d H:i') }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+{% endblock %}

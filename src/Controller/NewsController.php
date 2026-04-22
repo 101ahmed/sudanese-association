@@ -3,75 +3,41 @@
 namespace App\Controller;
 
 use App\Entity\News;
-use App\Form\NewsType;
-use App\Repository\NewsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
 class NewsController extends AbstractController
 {
-    #[Route('/news', name: 'news')]
-    public function index(NewsRepository $newsRepository)
+    #[Route('/news', name: 'public_news_list')]
+    public function index(Request $request, EntityManagerInterface $em): Response
     {
+        $q = $request->query->get('q');
+        $qb = $em->getRepository(News::class)->createQueryBuilder('n')
+            ->orderBy('n.id', 'DESC');
+
+        if (is_string($q) && trim($q) !== '') {
+            $term = '%'.trim($q).'%';
+            $qb->andWhere('n.title LIKE :q OR n.content LIKE :q')
+                ->setParameter('q', $term);
+        }
+
+        $newsList = $qb->getQuery()->getResult();
+
         return $this->render('news/index.html.twig', [
-            'news' => $newsRepository->findAll()
+            'newsList' => $newsList,
+            'searchQuery' => is_string($q) ? $q : '',
         ]);
     }
 
-    // ✅ CREATE
-    #[Route('/admin/news/create', name: 'news_create')]
-    public function create(Request $request, EntityManagerInterface $em)
+    #[Route('/news/{id}', name: 'public_news_show', requirements: ['id' => '\d+'])]
+    public function show(News $news): Response
     {
-        $news = new News();
-
-        $form = $this->createForm(NewsType::class, $news);
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            $news->setCreatedAt(new \DateTime());
-
-            $em->persist($news);
-            $em->flush();
-
-            return $this->redirectToRoute('news');
-        }
-
-        return $this->render('news/create.html.twig', [
-            'form' => $form->createView()
+        return $this->render('news/show.html.twig', [
+            'news' => $news,
         ]);
-    }
-
-    // ✅ EDIT
-    #[Route('/admin/news/{id}/edit', name: 'news_edit')]
-    public function edit(News $news, Request $request, EntityManagerInterface $em)
-    {
-        $form = $this->createForm(NewsType::class, $news);
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-
-            $em->flush();
-
-            return $this->redirectToRoute('news');
-        }
-
-        return $this->render('news/create.html.twig', [
-            'form' => $form->createView()
-        ]);
-    }
-
-    // ✅ DELETE
-    #[Route('/admin/news/{id}/delete', name: 'news_delete')]
-    public function delete(News $news, EntityManagerInterface $em)
-    {
-        $em->remove($news);
-        $em->flush();
-
-        return $this->redirectToRoute('news');
     }
 }
+

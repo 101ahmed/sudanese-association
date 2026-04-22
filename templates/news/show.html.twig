@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ news.title }}{% endblock %}
+
+{% block meta_description %}{{ news.content|striptags|slice(0, 160) }}{% if news.content|striptags|length > 160 %}…{% endif %}{% endblock %}
+
+{% block canonical_url %}{{ url('public_news_show', {id: news.id}) }}{% endblock %}
+{% block og_url %}{{ url('public_news_show', {id: news.id}) }}{% endblock %}
+{% block og_type %}article{% endblock %}
+
+{% block og_image %}{% if news.image %}{{ absolute_url(asset('uploads/' ~ news.image)) }}{% else %}{{ absolute_url(asset('image/photo01.jpg')) }}{% endif %}{% endblock %}
+
+{% block body %}
+    <div class="container page-wrap">
+        <article class="page-card ui-fade-in">
+            <h1 class="mb-3">{{ news.title }}</h1>
+            <p class="text-muted small mb-4">
+                {{ news.createdAt ? news.createdAt|date('Y-m-d H:i') : '' }}
+            </p>
+
+            {% if news.image %}
+                <img src="{{ asset('uploads/' ~ news.image) }}"
+                     alt="{{ news.title }}"
+                     class="img-fluid rounded mb-4 news-list-img">
+            {% endif %}
+
+            <div class="mb-4">
+                {{ news.content|nl2br }}
+            </div>
+
+            <a href="{{ path('public_news_list') }}" class="btn btn-outline-primary">
+                ← {{ 'home.news_show_all'|trans }}
+            </a>
+        </article>
+    </div>
+{% endblock %}
+
